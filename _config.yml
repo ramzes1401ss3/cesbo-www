@@ -1,0 +1,18 @@
+
+title: Cesbo
+
+exclude:
+  - "README.md"
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "docker.sh"
+
+keep_files:
+  - "assets/js/index.en.json"
+  - "assets/js/index.ru.json"
+
+#
+
+permalink: pretty
+markdown: kramdown
+excerpt_separator: <!-- more -->

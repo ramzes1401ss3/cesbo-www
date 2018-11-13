@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!-- Page last generated {{ site.time }} -->
+<html lang="{{ page.lang }}">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{{ page.title }} - Cesbo</title>
+
+	<link rel="icon" href="/assets/img/favicon.png" />
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/assets/css/custom.css" />
+	<link rel="stylesheet" href="/assets/css/highlight.css" />
+	{% for item in layout.css %}<link rel="stylesheet" href="{{ item }}" />
+	{% endfor %}
+	{% for item in page.css %}<link rel="stylesheet" href="{{ item }}" />
+	{% endfor %}
+
+	{%- if page.description -%}
+		{%- assign description = page.description -%}
+	{%- elsif page.layout == "post" -%}
+		{%- assign description = page.excerpt | markdownify | strip_html | replace: '"', ' ' | normalize_whitespace -%}
+	{%- else -%}
+		{%- assign description = "" -%}
+	{%- endif -%}
+
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="Cesbo" />
+	<meta property="og:title" content="{{ page.title }} - Cesbo" />
+	<meta property="og:url" content="https://cesbo.com/en/astra/" />
+	<meta property="og:image" content="https://cesbo.com/assets/img/logo-512.png" />
+	<meta property="og:description" name="description" content="{{ description }}" />
+
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="{{ page.title }} - Cesbo" />
+	<meta name="twitter:site" content="@cesbo" />
+	<meta name="twitter:url" content="https://cesbo.com/en/astra/" />
+	<meta name="twitter:image" content="https://cesbo.com/assets/img/logo-512.png" />
+	<meta name="twitter:description" content="{{ description }}" />
+
+	<link rel="alternate" href="https://cesbo.com/" hreflang="x-default" />
+	{% for item in site.data.translations._ %}<link rel="alternate" href="https://cesbo.com/{{ item[0] }}/" hreflang="{{ item[0] }}" />
+	{% endfor %}
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md fixed-top navbar-light bg-white border-bottom p-0 d-print-none" role="navigation" aria-label="main navigation">
+	<button type="button" class="navbar-toggler border-0" id="main-menu-button">
+			<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="main-menu">
+		<ul class="navbar-nav mr-auto my-2 my-lg-0">
+			<li class="nav-item"><a class="nav-link px-3" href="/{{ page.lang }}/">{{ site.data.translations['index'][page.lang] }}</a></li>
+			<li class="nav-item"><a class="nav-link px-3" href="/{{ page.lang }}/blog/">{{ site.data.translations['blog'][page.lang] }}</a></li>
+			<li class="nav-item"><a class="nav-link px-3" href="/astra-license/">{{ site.data.translations['buy'][page.lang] }}</a></li>
+			<li class="nav-item"><a class="nav-link px-3" href="/{{ page.lang }}profile/">{{ site.data.translations['profile'][page.lang] }}</a></li>
+		</ul>
+	</div>
+</nav>
+
+<main role="main" class="container mt-0 mt-sm-5 mb-5">
+{{ content }}
+</main>
+
+<footer class="container-fluid bg-transparent border-top pt-3 d-print-none">
+	<div class="row">
+		<div class="col-sm-3">
+			<ul class="list-unstyled text-small">
+				<li class="d-inline d-sm-block"><a class="link-muted mr-1" href="https://cesbo.com/help">{{ site.data.translations['helpDesk'][page.lang] }}</a></li>
+				<li class="d-inline d-sm-block"><a class="link-muted mr-1" href="https://twitter.com/cesbo" target="_blank">Twitter</a></li>
+				<li class="d-inline d-sm-block"><a class="link-muted mr-1" href="https://t.me/cesbo_{{ page.lang }}" target="_blank">Telegram</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-3">
+			<ul class="list-unstyled text-small">
+				<li class="d-inline d-sm-block"><a class="link-muted mr-1" href="/{{ page.lang }}/terms/">{{ site.data.translations['terms'][page.lang] }}</a></li>
+				<li class="d-inline d-sm-block"><a class="link-muted mr-1" href="/{{ page.lang }}/privacy/">{{ site.data.translations['privacy'][page.lang] }}</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-3">
+			<ul class="list-unstyled text-small">
+				{% for item in site.data.translations._ %}<li class="d-inline d-sm-block"><a class="link-muted mr-1" href="/{{ item[0] }}/">{{ item[1] }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="col-sm-3 d-flex align-items-end justify-content-center justify-content-sm-end">
+			<div class="text-muted mb-1 mb-sm-3">&copy; 2018, Cesbo OÜ</div>
+		</div>
+	</div>
+</footer>
+
+<script type="text/javascript" src="/assets/js/app.js"></script>
+{% for item in layout.script %}<script type="text/javascript" src="{{ item }}"></script>
+{% endfor %}
+{% for item in page.script %}<script type="text/javascript" src="{{ item }}"></script>
+{% endfor %}
+
+</body>
+</html>

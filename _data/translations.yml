@@ -1,0 +1,40 @@
+_:
+  en: English
+  ru: Русский
+
+readMore:
+  en: "Read more..."
+  ru: "Читать дальше..."
+
+search:
+  en: "Search"
+  ru: "Поиск"
+index:
+  en: "Home"
+  ru: "Главная"
+blog:
+  en: "Blog"
+  ru: "Блог"
+buy:
+  en: "Buy"
+  ru: "Купить"
+profile:
+  en: "Profile"
+  ru: "Профиль"
+
+tags:
+  en: "Tags"
+  ru: "Метки"
+allPosts:
+  en: "All Posts"
+  ru: "Все Статьи"
+
+helpDesk:
+  en: "Help Desk"
+  ru: "Центр Поддрежки"
+terms:
+  en: "Terms"
+  ru: "Условия использования"
+privacy:
+  en: "Privacy"
+  ru: "Конфиденциальность"

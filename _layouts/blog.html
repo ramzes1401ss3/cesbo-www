@@ -1,0 +1,57 @@
+---
+layout: base
+script:
+  - /assets/js/blog.js
+  - /assets/js/elasticlunr.min.js
+---
+
+{% assign tags = '' | split: ',' %}
+{% for posts in site.tags %}
+	{% assign tag = posts[0] %}
+	{% assign count = 0 %}
+	{% for post in posts[1] %}
+		{% if post.lang == page.lang %}
+			{% assign count = count | plus: 1 %}
+		{% endif %}
+	{% endfor %}
+	{% if count > 0 %}
+		{% assign tag = tag | split: ',' %}
+		{% assign tags = tags | concat: tag %}
+	{% endif %}
+{% endfor %}
+{%- assign tags = tags | sort_natural -%}
+
+<div class="row"><div class="col-sm-8 mx-auto"><div class="form-row">
+	<div class="form-group col-sm-6 search">
+		<input id="search-bar" type="text" class="form-control mx-auto" placeholder="{{ site.data.translations['search'][page.lang] }}" disabled />
+		<button type="button" class="close" aria-label="Close" id="search-clear">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="form-group col-sm-6">
+		<select id="tag-select" class="custom-select">
+<option value="" selected>{{ site.data.translations['allPosts'][page.lang] }}</option>
+<option disabled>---</option>
+{% for tag in tags %}<option value="{{ tag }}">{{ tag | capitalize }}</option>{% endfor %}
+		</select>
+	</div>
+</div></div></div>
+
+<ul class="blog" id="blog-list">
+{%- assign items = site.posts | where: 'lang', page.lang %}
+{% for item in items %}
+{%- assign item_url = item.url | relative_url -%}
+<li class="blog-item" data-tags="{% for tag in item.tags %}{{ tag }}{% unless forloop.last %},{% endunless %}{% endfor %}" data-url="{{ item_url }}">
+<h3><a class="link-dark p-0" href="{{ item_url }}">{{ item.title | escape }}</a></h3>
+<p class="text-muted"><time datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%b %-d, %Y" }}</time></p>
+<p class="text-justify">{{ item.excerpt | strip_html }}</p>
+<div class="row">
+	<div class="col">
+		<a class="btn btn-outline-primary btn-sm" href="{{ item_url }}" role="button">{{ site.data.translations['readMore'][page.lang] }}</a>
+	</div>
+	<div class="col-auto">
+		{% for tag in item.tags %}<span class="badge badge-info ml-1">{{ tag }}</span>{% endfor %}
+	</div>
+</div>
+</li>{% endfor %}
+</ul>
