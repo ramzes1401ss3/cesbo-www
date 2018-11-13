@@ -22,7 +22,8 @@ for(let [lang, value] of Object.entries(data)) {
 	index.addField('body');
 	index.addField('url');
 
-	value.forEach(function(doc) {
+	value.forEach(function(doc, key) {
+		doc.id = key + 1;
 		index.addDoc(doc);
 	});
 

@@ -37,7 +37,7 @@ script:
 	</div>
 </div></div></div>
 
-<ul class="blog" id="blog-list">
+<ul class="blog">
 {%- assign items = site.posts | where: 'lang', page.lang %}
 {% for item in items %}
 {%- assign item_url = item.url | relative_url -%}

@@ -43,30 +43,52 @@ function tagSelectHandler() {
 	this.blur();
 }
 
-function searchBarHandler() {
+function searchBarInput() {
 	clear();
 	var val = this.value.trim();
 	if(val.length > 2) doSearch(val);
 	if(!!tagSelect.value) doFilter(tagSelect.value);
 }
 
-function searchClearHandler() {
+function searchClearClick() {
 	clear();
 	searchBar.value = '';
 	this.blur();
+}
+
+function globalKeyHandler(e) {
+	if(e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || e.target.type == 'textarea') return;
+
+	if(document.activeElement == document.body) {
+		if(e.keyCode == 83) {
+			e.preventDefault();
+			window.scrollTo(0, 0);
+			searchBar.focus();
+		}
+		return;
+	}
+
+	if(document.activeElement == searchBar) {
+		if(e.keyCode == 27) {
+			searchClearClick.call(this);
+		}
+		return;
+	}
 }
 
 function init(index) {
 	searchIndex = elasticlunr.Index.load(index);
 
 	searchBar.removeAttribute('disabled');
-	searchBar.on('input', searchBarHandler, false);
+	searchBar.on('input', searchBarInput);
 
-	searchClear.on('click', searchClearHandler, false);
+	searchClear.on('click', searchClearClick);
+
+	document.on('keydown', globalKeyHandler);
 }
 
 $(function() {
-	tagSelect.on('change', tagSelectHandler, false);
+	tagSelect.on('change', tagSelectHandler);
 
 	var xmlhttp = new XMLHttpRequest(),
 		lang = document.documentElement.getAttribute('lang');

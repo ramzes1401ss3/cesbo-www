@@ -10,8 +10,8 @@ window.$ = function() {
 	}
 
 	if(typeof(x) == 'function') {
-		document.addEventListener('DOMContentLoaded', function w() {
-			document.removeEventListener('DOMContentLoaded', w, false);
+		document.on('DOMContentLoaded', function w() {
+			document.off('DOMContentLoaded', w);
 			x();
 		});
 	}
@@ -25,6 +25,16 @@ Element.prototype.on = function(event, fn) {
 Element.prototype.off = function(event, fn) {
 	this.removeEventListener(event, fn);
 	return this;
+};
+
+document.on = function(event, fn) {
+	document.addEventListener(event, fn, false);
+	return document;
+};
+
+document.off = function(event, fn) {
+	document.removeEventListener(event, fn);
+	return document;
 };
 
 $(function() {
