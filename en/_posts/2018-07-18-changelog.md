@@ -2,7 +2,7 @@
 layout: post
 lang: en
 title: Astra 5.64 Changelog
-tags: [astra,changelog]
+tags: [changelog]
 ---
 
 - **simulcrypt**: option EMM Clone - duplicates EMM packets for all streams with same CAS

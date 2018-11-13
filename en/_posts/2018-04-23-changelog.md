@@ -2,7 +2,7 @@
 layout: post
 lang: en
 title: Astra 5.64 Changelog
-tags: [astra,changelog]
+tags: [changelog]
 ---
 
 - **dvb_input**: fix stream_id option (multi plp on dvb-t2)

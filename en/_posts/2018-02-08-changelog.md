@@ -2,7 +2,7 @@
 layout: post
 lang: en
 title: Astra 5.64 Changelog
-tags: [astra,changelog]
+tags: [changelog]
 ---
 
 - **interface**: asks to change default password on first launch

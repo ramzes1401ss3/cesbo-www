@@ -2,7 +2,7 @@
 layout: post
 lang: en
 title: Astra 5.64 Changelog
-tags: [astra,changelog]
+tags: [changelog]
 ---
 
 - **np_output**: reconnect on client buffer overflow (transmitting rate less than stream rate)

@@ -2,7 +2,7 @@
 layout: post
 lang: en
 title: Astra 5.64 Changelog
-tags: [astra,changelog]
+tags: [changelog]
 ---
 
 - **HTTP-Input**: fix Basic-authentication (send Basic header on first request)

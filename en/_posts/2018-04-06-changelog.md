@@ -2,7 +2,7 @@
 layout: post
 lang: en
 title: Astra 5.64 Changelog
-tags: [astra,changelog]
+tags: [changelog]
 ---
 
 - **http_input**, **rtsp_input**, **udp_input**: watchdog. restart stream on receiving timeout

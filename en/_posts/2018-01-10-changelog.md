@@ -2,7 +2,7 @@
 layout: post
 lang: en
 title: Astra 5.64 Changelog
-tags: [astra,changelog]
+tags: [changelog]
 ---
 
 - **RTSP-Input**: send `GET_PARAMETER` request each 30 seconds to keep connection active
