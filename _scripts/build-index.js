@@ -11,12 +11,16 @@ for(let [lang, value] of Object.entries(data)) {
 	const fname = 'index.' + lang + '.json';
 	console.log('Build: ' + fname);
 
-	var index = elasticlunr(function () {
-		this.addField('title'),
-		this.addField('body'),
-		this.addField('url'),
-		this.setRef('id')
-	});
+	var index = elasticlunr();
+
+	index.pipeline.remove(elasticlunr.stemmer);
+	index.pipeline.remove(elasticlunr.stopWordFilter);
+	index.pipeline.remove(elasticlunr.trimmer);
+
+	index.setRef('id');
+	index.addField('title');
+	index.addField('body');
+	index.addField('url');
 
 	value.forEach(function(doc) {
 		index.addDoc(doc);
