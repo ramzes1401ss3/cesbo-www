@@ -12,8 +12,7 @@ Installation of the Cesbo Astra is a simple process - enough only one binary fil
 
 ## Install
 
-To install latest version download binary file and set execute permission.
-On the server you may use next command:
+Download binary file and set execute permission. On the server you may use next command:
 
 ``` sh
 curl -Lo /usr/bin/astra http://cesbo.com/download/astra/$(uname -m)
