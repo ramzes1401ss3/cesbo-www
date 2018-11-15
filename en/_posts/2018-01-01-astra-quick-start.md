@@ -22,7 +22,7 @@ chmod +x /usr/bin/astra
 After installation, register service in the **systemd** - system service manager in most Linux distributions:
 
 ``` sh
-astra init 8000
+astra init
 ```
 
 Launch Astra:
@@ -31,9 +31,13 @@ Launch Astra:
 systemctl start astra
 ```
 
-After start web-interface will be available on: <http://server-address:8000>.
-In this example used port **8000**, you may define any port.
-Default login and password: `admin`
+After start web-interface will be available on: <http://server-address:8000>. Default login and password: `admin`
+
+By the default, for web-interface and control Astra used port **8000**, you may define any port:
+
+``` sh
+astra init 4000
+```
 
 Enable automatically launch on system startup:
 
