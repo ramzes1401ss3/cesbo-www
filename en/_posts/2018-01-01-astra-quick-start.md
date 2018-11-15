@@ -3,6 +3,7 @@ layout: post
 lang: en
 title: Astra. Quick Start
 tags: [astra]
+permalink: /en/astra-quick-start/
 ---
 
 Installation of the Cesbo Astra is a simple process - enough only one binary file.
@@ -11,25 +12,45 @@ Installation of the Cesbo Astra is a simple process - enough only one binary fil
 
 ## Install
 
-To install latest version launch next command on the server:
+To install latest version download binary file and set execute permission.
+On the server you may use next command:
 
 ``` sh
-wget -O /usr/bin/astra http://cesbo.com/download/astra/$(uname -m)
+curl -Lo /usr/bin/astra http://cesbo.com/download/astra/$(uname -m)
+chmod +x /usr/bin/astra
 ```
 
-On our website available more versions <https://cesbo.com/download/astra/>. To install required version, just find it in the archive, copy link, and launch next command on the server:
+After installation, register service in the **systemd** - system service manager in most Linux distributions:
 
 ``` sh
-wget -O /usr/bin/astra link-to-required-version
+astra init 8000
 ```
 
-After installation create directory for configuration files:
+Launch Astra:
 
 ``` sh
-mkdir /etc/astra
+systemctl start astra
 ```
 
-Save `license.txt` file with serial number from email attachment to `/etc/astra/license.txt` on the server. Email with `license.txt` you will receive immediatelly after purchase or after trial request.
+After start web-interface will be available on: <http://server-address:8000>.
+In this example used port **8000**, you may define any port.
+Default login and password: `admin`
+
+Enable automatically launch on system startup:
+
+``` sh
+systemctl enable astra
+```
+
+## Process management
+
+Command to manage process with systemd:
+
+- `systemctl start astra` - start
+- `systemctl stop astra` - stop
+- `systemctl restart astra` - restart
+- `systemctl enable astra` - turn autorun on
+- `systemctl disable astra` - turn autorun off
 
 ## Check version
 
@@ -39,55 +60,62 @@ After installation or after update you may check installed version:
 astra -v
 ```
 
-## Launch
-
-To start astra launch next command:
-
-``` sh
-astra -c /etc/astra/astra.conf -p 8000 --log /var/log/astra.log --daemon
-```
-
-- `-c /etc/astra/astra.conf` - configuration file, will be created automatically after first launch
-- `-p 8000` - port for web interface, you may use any value
-- `--log /var/log/astra.log` - log-file
-- `--daemon` - launch in background
-
-After the launch web-interface will be available on <http://server-address:8000>. Default login and password is `admin`
-
-**Attention!** To start Astra automatically on system startup needed additional settings in operation system: [Autorun](#autorun)
-
 ## Update
 
 Before update create a backup with binary and with configuration files
 
 ``` sh
-tar -Pzcf /etc/astra/backup.tar.gz /usr/bin/astra /etc/astra/astra.conf
+tar -Pzcf ~/astra-backup.tar.gz /usr/bin/astra /etc/astra
 ```
 
 To extract backup launch next commands:
 
 ``` sh
 rm -f /usr/bin/astra
-tar -Pxf /etc/astra/backup.tar.gz
+tar -Pxf ~/astra-backup.tar.gz
 ```
 
 Install update:
 
 ``` sh
 rm -f /usr/bin/astra
-wget -O /usr/bin/astra http://cesbo.com/download/astra/$(uname -m)
+curl -Lo /usr/bin/astra http://cesbo.com/download/astra/$(uname -m)
+chmod +x /usr/bin/astra
 ```
 
 Restart Astra after update.
 
-## Uninstall
-
-To uninstall Astra just remove binary file, configuration directory, and log-file:
-
 ``` sh
-rm -f /usr/bin/astra
-rm -rf /etc/astra
-rm -f /var/log/astra.log
+systemctl restart astra
 ```
 
-## Autorun
+## Uninstall
+
+Stop service and turn autorun off:
+
+``` sh
+systemctl stop astra
+systemctl disable astra
+```
+
+Remove service from the service manager:
+
+``` sh
+astra remove
+```
+
+Remove binary file and configuration files:
+
+``` sh
+rm -rf /usr/bin/astra /etc/astra
+```
+
+## Install archived version
+
+On the web site also available archive: <http://cesbo.com/download/astra/>.
+Find requried version, download it, and set execute permission:
+
+``` sh
+curl -Lo /usr/bin/astra linu-to-requried-version
+chmod +x /usr/bin/astra
+```
