@@ -1,68 +1,65 @@
 ---
 layout: post
-lang: ru
-title: Написание Статей на cesbo.com
+lang: en
+title: Write Posts to cesbo.com
 tags: [dev]
 ---
-
-
-
+23
+, or select branch if created before
 <!-- more -->
+## Website structure
 
-## Структура сайта
+All post located in the text files with Markdown format.
+Path to the file:  `/XX/_posts/` where XX is a language code.
+File name shoulbe formatted as `YYYY-MM-DD-TITLE.md` where:
+ to append changes into your repository
+- `YYYY` - year
+- `MM` - month, in range 01 .. 12. 31
+1 `Open file
 
-Посты хранятся в текстовых файлах, в формате Markdown.
-Каталог с файлами: `/XX/_posts/` где XX - код языка.
-Имя файла должно быть в формате `YYYY-MM-DD-TITLE.md` где:
-
-- `YYYY` - год
-- `MM` - месяц, в диапазоне 01 .. 12
-- `DD` - день месяца, в диапазоне 01 .. 31
-- `TITLE` - заголовок, маленькими буквами, дефис между словами
-
-## Шаблон статьи
-
+ Make changes
+## Pos Templat    3.
 ```
 ---
 layout: post
-lang: ru
-title: Название Статьи
-tags: [метка,метка]
+lang: en
+title: Post Tile
+tags: [tag,tag]
 ---
 
-Описание статьи
+Post Description
 
 <!-- more -->
 
-Текст статьи
+Post Content
 ```
 
-## Добавить статью
+## Suggest a post
 
-1. Создайте копию репозитория на [github.com](https://github.com/cesbo/cesbo-www/): Нажмите кнопку **Fork**
-2. Откройте каталог с статьями: **ru/_posts**
-3. В вашей копии репозитория добавьте ветку для новых изменений, или выберите ранее созданную ветку:
-    1. Нажмите **Branch: master**
-    2. Укажите название новой ветки. Например: `new post`
-    3. Нажмите **Create branch**
-4. Чтобы добавить новый файл:
-    1. Нажмите **Create new file**
-    2. Задайте имя файла в формате описанном выше
-    3. Напишите вашу статью
-    4. Нажмите **Commit new file**, чтобы добавить изменения в ваш репозиторий
-5. Чтобы отредактировать файл:
-    1. Откройте необходимый файл
-    2. Нажмите **Edit this file** (иконка карандаш)
-    3. Добавьте изменения
-    4. Нажмите **Commit changes**
-5. Когда статья будет готова, отправьте её в наш репозиторий:
-    1. Нажмите **New pull request**
-    2. Выберите в списке **compare** вашу ветку
-    3. Нажмите **Create pull request**
+1. Create a repository fork on [github.com](https://github.com/cesbo/cesbo-www/): Press **Fork** button
+2. Open direcotry with posts: **en/_posts**
+3. Create additional branch for your changes, or select branch if created before:
+    1. Press **Branch: master**
+    2. Write new repository name. For example: `new post`
+    3. Press **Create branch**
+4. To create new file:
+    1. Press **Create new file**
+    2. Set file name in format specified above
+    3. Write your post
+    4. Press **Commit new file** to append changes into your repository
+5. To edit your file:
+    1. Open file
+    2. Press **Edit this file** (pencil icon)
+    3. Make changes
+    4. Press **Commit changes**
+5. When post will be ready, send it to our repository:
+    1. Press **New pull request**
+    2. Select in the **compare** field your branch
+    3. Press **Create pull request**
 
 ## Markdown
 
-Markdown - популярный формат разметки текста.
+Markdown - is a popular markup language to format text that looks great on any device.
 
 <table class="table">
 <thead><tr>
