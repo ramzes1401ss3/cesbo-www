@@ -108,7 +108,7 @@ Markdown - is a popular markup language to format text that looks great on any d
 <tr>
 	<td class="text-monospace">![Image](https://cesbo.com/a.png)</td>
 	<td class="text-monospace">![Image][1]<br/>&#8942;<br/>[1]: https://cesbo.com/a.png</td>
-	<td><img src="/assets/img/markdown.png" alt="Markdown" width="36" height="36"/></td>
+	<td><img src="/assets/img/favicon.png" alt="Image" width="36" height="36"/></td>
 </tr>
 <tr><th colspan="3" class="pt-5">Blockquote</th></tr>
 <tr>
