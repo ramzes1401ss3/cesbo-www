@@ -4,21 +4,24 @@ lang: en
 title: Write Posts to cesbo.com
 tags: [dev]
 ---
-23
-, or select branch if created before
+
+
+
 <!-- more -->
+
 ## Website structure
 
 All post located in the text files with Markdown format.
 Path to the file:  `/XX/_posts/` where XX is a language code.
 File name shoulbe formatted as `YYYY-MM-DD-TITLE.md` where:
- to append changes into your repository
-- `YYYY` - year
-- `MM` - month, in range 01 .. 12. 31
-1 `Open file
 
- Make changes
-## Pos Templat    3.
+- `YYYY` - year
+- `MM` - month, in range 01 .. 12
+- `DD` - day of month, in rage 01 .. 31
+- `TITLE` - title in lowercase, with hyphen between words
+
+## Post Template
+
 ```
 ---
 layout: post
