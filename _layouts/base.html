@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <!-- Page last generated {{ site.time }} -->
+
+{%- if page.description -%}
+	{%- assign description = page.description -%}
+{%- elsif page.layout == "post" -%}
+	{%- assign description = page.excerpt | markdownify | strip_html | replace: '"', ' ' | normalize_whitespace -%}
+{%- else -%}
+	{%- assign description = "" -%}
+{%- endif -%}
+
 <html lang="{{ page.lang }}">
 <head>
+	<title>{{ page.title }} - {{ site.title }}</title>
+
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>{{ page.title }} - Cesbo</title>
+	<meta name="description" content="{{ description }}" />
+
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="{{ page.title }} - {{ site.title }}" />
+	<meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+	<meta property="og:image" content="{{ site.url }}/assets/img/logo-512.png" />
+	<meta property="og:description" content="{{ description }}" />
+
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="{{ page.title }} - {{ site.title }}" />
+	<meta name="twitter:url" content="{{ site.url }}{{ page.url }}" />
+	<meta name="twitter:site" content="@cesbo" />
+	<meta name="twitter:image" content="{{ site.url }}/assets/img/logo-512.png" />
+	<meta name="twitter:description" content="{{ description }}" />
 
 	<link rel="icon" href="/assets/img/favicon.png" />
 	<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
@@ -16,30 +40,8 @@
 	{% for item in page.css %}<link rel="stylesheet" href="{{ item }}" />
 	{% endfor %}
 
-	{%- if page.description -%}
-		{%- assign description = page.description -%}
-	{%- elsif page.layout == "post" -%}
-		{%- assign description = page.excerpt | markdownify | strip_html | replace: '"', ' ' | normalize_whitespace -%}
-	{%- else -%}
-		{%- assign description = "" -%}
-	{%- endif -%}
-
-	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content="Cesbo" />
-	<meta property="og:title" content="{{ page.title }} - Cesbo" />
-	<meta property="og:url" content="https://cesbo.com/en/astra/" />
-	<meta property="og:image" content="https://cesbo.com/assets/img/logo-512.png" />
-	<meta property="og:description" name="description" content="{{ description }}" />
-
-	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content="{{ page.title }} - Cesbo" />
-	<meta name="twitter:site" content="@cesbo" />
-	<meta name="twitter:url" content="https://cesbo.com/en/astra/" />
-	<meta name="twitter:image" content="https://cesbo.com/assets/img/logo-512.png" />
-	<meta name="twitter:description" content="{{ description }}" />
-
-	<link rel="alternate" href="https://cesbo.com/" hreflang="x-default" />
-	{% for item in site.data.translations._ %}<link rel="alternate" href="https://cesbo.com/{{ item[0] }}/" hreflang="{{ item[0] }}" />
+	<link rel="alternate" href="{{ site.url }}" hreflang="x-default" />
+	{% for item in site.data.translations._ %}<link rel="alternate" href="{{ site.url }}/{{ item[0] }}/" hreflang="{{ item[0] }}" />
 	{% endfor %}
 </head>
 

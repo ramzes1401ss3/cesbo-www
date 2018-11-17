@@ -6,7 +6,7 @@ layout: null
 {% for lang in site.data.translations._ %}"{{ lang[0] }}": [
 {%- assign posts = site.posts | where: 'lang', lang[0] -%}
 {% for item in posts %}{
-	"url": "{{ item.url | relative_url }}",
+	"url": "{{ item.url }}",
 	"title": "{{ item.title }}",
 	"body": "{{ item.content | markdownify | strip_html | replace: '"', ' ' | normalize_whitespace | replace: '&gt;', '>' | replace: '&lt;', '<' | replace: '&amp;', '&' }}"
 }{% unless forloop.last %},{% endunless %}{% endfor %}
