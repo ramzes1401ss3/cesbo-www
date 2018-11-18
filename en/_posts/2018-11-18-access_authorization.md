@@ -19,9 +19,11 @@ Authorization allow to control an access to the channels and allow to keep a sta
  
  Scripting language allow implementing many authorization schemes.   
 
-Examples:
-The authorization schema described in the script. For version 5.62 and newer script could be saved in the /etc/astra/mod directory. For windows C:\astra\mod. Script will be automatically loaded on launch. For any other version path to the script could be defined in the command line: astra -c /etc/astra/example.conf -p 8000 /etc/astra/auth.lua.   
-On access to the channels with HTTP Play, other settings is not required. In other cases, append the auth option to the Output in the Stream settings. Example: http://0:5000/channel-id#auth.  
+Examples:  
+The authorization schema described in the script.  
+For version 5.62 and newer script could be saved in the `/etc/astra/mod` directory. For windows `C:\astra\mod`   
+Script will be automatically loaded on launch. For any other version path to the script could be defined in the command line:   `astra -c /etc/astra/example.conf -p 8000 /etc/astra/auth.lua`   
+On access to the channels with HTTP Play, other settings is not required. In other cases, append the auth option to the Output in the Stream settings. Example: `http://0:5000/channel-id#auth` 
 
 Define the auth_request function in the script.:
 
@@ -46,8 +48,10 @@ The function called on a request processing and after connection closing. Functi
 single_ip.lua
 
 - **limit** — limit of the connections from the single IP
-- **on_start** — function, on a request processing. Select a list of the client identifiers client_id_list from the table ip_list by the IP address. If the number of the client identifiers greater than the limit value, then close a connection for the first client
-- **on_stop** — function, on connection closing. Remove client identifier from the client_id_list
+- **on_start** — function, on a request processing. 
+Select a list of the client identifiers client_id_list from the table ip_list by the IP address. 
+If the number of the client identifiers greater than the limit value, then close a connection for the first client  
+- **on_stop** — function, on connection closing. Remove client identifier from the client_id_list  
 
 
 ## Limiting connections by the IP addresses
@@ -64,11 +68,11 @@ Description of the script:
 
 ## GeoIP access restrictions
 
-An example shows how to communicate with GeoIP service. How to allow access for customers from the specific country:
+An example shows how to communicate with GeoIP service. How to allow access for customers from the specific country:  
 
 geoip.lua
 
-When client connected, Astra sends a request to the GeoIP service freegeoip.net
+When client connected, Astra sends a request to the GeoIP service freegeoip.net. 
 
 Description of the script:
 - **allow_country** — list of the country codes ISO 3166-1 alpha-2
@@ -77,7 +81,7 @@ Description of the script:
 
 ## Integration with Stalker Middleware
 
-In the Stalker settings turn on Temporary URL - Flussonic support
+In the Stalker settings turn on Temporary URL - Flussonic support  
 
 stalker.lua
 
@@ -88,7 +92,7 @@ Description of the script:
 
 ## Retrieve IP address from X-Real-IP
 
-Method used to replace connection IP address by IP address defined in the HTTP header X-Real-IP or X-Forwarded-For
+Method used to replace connection IP address by IP address defined in the HTTP header **X-Real-IP** or **X-Forwarded-For**
 
 xrealip.lua
 
@@ -105,7 +109,7 @@ xrealip.lua
 
 auth.lua
 
-Client authorization:
-**stream address?auth=admin:admin** (login and password)
+Client authorization:  
+**stream address?auth=admin:admin** (login and password)  
 **stream address?token=112277668833743** (token)
 
