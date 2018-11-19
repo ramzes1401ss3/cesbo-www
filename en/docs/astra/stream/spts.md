@@ -2,7 +2,8 @@
 layout: frame
 lang: en
 title: Stream Settings
-css: - /assets/css/icons.css
+css:
+  - /assets/css/icons.css
 ---
 
 ##### Enable
