@@ -6,10 +6,10 @@ tags: [changelog]
 ---
 
 - **interface**: запрос на изменение пароля при первом запуске
-- **interface**: remove leading and trailing spaces in input/output address
-- **interface**: don't load log archive. in log only new messages
+- **interface**: удаление пробелов в input/output
+- **interface**: не загружаем архив логов. в логе только новые сообщения
 - **make_mpts**: crash on use make_mpts function in lua-script
 - **mpts**: automatically increment PAT/CAT/NIT/SDT versions on save changes
-- **api**: ignore EIT on scan
+- **api**: игнорирование EIT при сканировании
 - **hls**: change default segment options: quantity:6 duration:5
-- **dvb**: option "mxl5xx_snr" to scale SNR value for MaxS8. in the web "Advanced" -> "Scale DD MaxS8 SNR"
+- **dvb**: опция для "mxl5xx_snr" - нормализует значение SNR для MaxS8. находится в "Advanced" -> "Scale DD MaxS8 SNR"
