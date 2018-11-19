@@ -1,38 +1,39 @@
 ---
 layout: frame
-lang: ru
+lang: en
 title:  advanced
 ---
 
 #### Advanced
 
-**MODULATION** - модуляция   
-**Default: Auto** (по умолчанию)   
-По умолчанию сейчас для DVB-S - QPSK, DVB-S2 - PSK8   
+**MODULATION**   
+**Default: Auto**  
+Default now for DVB-S - QPSK, DVB-S2 - PSK8 
 
 ---
 
-**FEC - forward error correction** (система корректирующих кодов)    
-**Default: Auto** (по умолчанию)    
+**FEC - forward error correction** - forward error correction    
+**Default: Auto** (by default)    
 
 ---
 
-**ROLL-OFF** - spectrum efficiency (коэфициент сглаживания), используется только для DVB-S2, возможные значения: Default: 35 (по умолчанию), 25, 20, AUTO  
-**STREAM ID** - PLP stream ID, только для DVB-S2 и DVB-T2:  
-- PLS MODE - возможные значения: Root, Gold, Combo  
-- PLS CODE - возможные значения: 0 - 262143  
-- STREAM ID - возможные значения: 0 - 255  
+**ROLL-OFF** - spectrum efficiency. used for DVB-S2 only, possible value: Default: 35, 25, 20, AUTO  
+
+**STREAM ID** - PLP stream ID, only for DVB-S2 and DVB-T2:  
+- PLS MODE -  possible value:  Root, Gold, Combo  
+- PLS CODE -  possible value:  0 - 262143  
+- STREAM ID -  possible value:  0 - 255  
 
 ---
 
-**TIMEOUT** - задержка в секундах до проверки DVR ошибок, по умолчанию 2 секунды  
+**TIMEOUT** - delay in seconds to DVR error checking, default 2 seconds  
 
-**DDCI** - привязать адаптер к DVB-CI Digital Devices, значение соответствует номеру адаптера в системе 
+**DDCI** - bind the adapter to DVB-CI Digital Devices. The value corresponds to the adapter number on the system 
 
-**Budget Mode. Disable hardware PID filtering** - отключить аппаратную фильтрацию данных. Astra получит весь поток с DVB-адаптера. Параметр используется для передачи всего транспондера или для устаревших DVB-адаптеров без аппаратной фильтрации (например SkyStar 2). По умолчанию, аппаратная фильтрация включена 
+**Budget Mode. Disable hardware PID filtering** - - disable hardware filtering of the data. Astra will get all the stream from the DVB adapter. The parameter is used to transmit the entire transponder or for legacy DVB adapters without hardware filtering (e.g. SkyStar 2). By default, hardware filtering is enabled 
 
-**Signal in dBm** - вывод уровня сигнала в dBm. Для адаптеров TBS должен быть установлен параметр драйвера: `options tbsfe dbm=1 esno=1` в файле `/etc/modprobe.d/tbsfe.conf`. DVB адаптеры с демодулятором CXD2820R передают значение уровеня сигнала в dBm по умолчанию  
+**Signal in dBm** - output signal level in dBm. For adapters TBS, the driver parameter must be set to `esno=1` in the file `/etc/modprobe.d/tbsfe.conf`. DVB adapters with demodulator CXD2820R transmit the value of the signal level in dBm by default   
 
-**Scale DD MaxS8 SNR** - корректировка отображения уровня сигнала для адаптеров DD MaxS8  
+**Scale DD MaxS8 SNR** - кcorrection of signal level display for DD MaxS8 adapters  
 
-**CA DELAY** - задержка, в секундах, перед отправкой информации о канале на модуль условного доступа  
+**CA DELAY** - delay, in seconds, before sending channel information to the conditional access module  
