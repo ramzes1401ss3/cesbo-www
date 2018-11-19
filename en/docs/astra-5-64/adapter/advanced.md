@@ -34,6 +34,6 @@ Default now for DVB-S - QPSK, DVB-S2 - PSK8
 
 **Signal in dBm** - output signal level in dBm. For adapters TBS, the driver parameter must be set to `esno=1` in the file `/etc/modprobe.d/tbsfe.conf`. DVB adapters with demodulator CXD2820R transmit the value of the signal level in dBm by default   
 
-**Scale DD MaxS8 SNR** - кcorrection of signal level display for DD MaxS8 adapters  
+**Scale DD MaxS8 SNR** - correction of signal level display for DD MaxS8 adapters  
 
 **CA DELAY** - delay, in seconds, before sending channel information to the conditional access module  
