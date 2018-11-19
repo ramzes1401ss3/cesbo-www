@@ -1,11 +1,11 @@
 ---
 layout: frame
-lang: ru
-title: Настройка unicable
+lang: en
+title: unicable
 ---
 
-**UniСable** - протокол, позволяющий подсоединить несколько тюнеров к одному кабелю  
+**UniСable** - Protocol that allows multiple tuners to be connected to the same cable  
 
-- **UNICABLE SLOT** - Default: unicable disabled (по умолчанию выключен), возможные значения: 1 - 9
-- **SLOT POSITION** - возможные значения: A, B
-- **SLOT FREQUENCY** - возможные значения: 950 - 2150 MHz
+ - **UNICABLE SLOT** - Default: unicable disabled possible value: 1 - 9
+ - **SLOT POSITION** - possible value: A, B
+ - **SLOT FREQUENCY** - possible value: 950 - 2150 MHz
