@@ -1,11 +1,11 @@
 ---
 layout: post
-lang: en
+lang: ru
 title: Astra 5.64 Changelog
 tags: [changelog]
 ---
 
-- **interface**: asks to change default password on first launch
+- **interface**: запрос на изменение пароля при первом запуске
 - **interface**: remove leading and trailing spaces in input/output address
 - **interface**: don't load log archive. in log only new messages
 - **make_mpts**: crash on use make_mpts function in lua-script
