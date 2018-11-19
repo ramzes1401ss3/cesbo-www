@@ -1,5 +1,5 @@
 layout: frame
-lang: ru
+lang: en
 title: diseqc
 ---
 
