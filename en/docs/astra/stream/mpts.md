@@ -8,7 +8,7 @@ css:
 ---
 
 <!-- more -->
- <span class="icon icon-move"></span>
+
  <span class="icon icon-move"></span>Enable - by default, the channel is enabled  
 **NAME** - channel name, used in logs  
 **ID** - channel ID, when you create a new channel is generated automatically, you can use your ID  
@@ -39,9 +39,9 @@ css:
 **ONID** - Original Network ID - default: 1  
 **INPUT LIST** - list of sources of reception  
 **NEW INPUT** - add stream source - (stream input setup)  
-**Шестерёнка** - stream setup setting button
+ <span class="icon icon-settings"></span> - stream setup setting button
 **NEW OUTPUT** - add an address for transmission of the media stream - (stream output setup)  
-**Шестерёнка** - the settings button of the transmission of the media stream  
+ <span class="icon icon-settings"></span> - the settings button of the transmission of the media stream  
 **Enable** - off the reception from the source, enabled by default  
 **Disable** - disable stream transfer  
 **Remove** - remove program/remove stream transfer 
