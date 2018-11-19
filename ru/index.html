@@ -5,61 +5,52 @@ title: Astra
 description: Профессиональное программное обеспечение для организации сервиса вещания цифрового ТВ
 ---
 
-<header class="mb-5">
+<div class="row landing-header"><div class="col px-0">
 	<h1>{{ page.title }}</h1>
 	<p class="lead">{{ page.description }}</p>
-	<p class="lead">
-		<a href="/ru/astra-quick-start/" class="btn btn-outline-primary btn-lg px-5" role="button">Начало Работы</a>
-	</p>
-</header>
+</div></div>
 
-<article>
-<div class="row">
-	<div class="col-sm-4">
-		<h3>Источники</h3>
-		<ul class="feature-list">
-			<li>DVB, ATSC, ASI</li>
-			<li>HTTP (MPEG-TS, HLS)</li>
-			<li>UDP/RTP</li>
-			<li>RTSP</li>
-			<li>MPEG-TS Файлы</li>
-		</ul>
-		<h3>Передача</h3>
-		<ul class="feature-list">
-			<li>DVB: <a href="http://www.digital-devices.eu/shop/en/professional-series/resi-dvb-c-modulator/269/dd-resi-dvb-c-fsm-8-qam-modulator-card-pci-express" target="_blank">RESI DVB-C Modulator</a>, <a href="http://www.hides.com.tw/product_pt100_eng.html" target="_blank">HiDes DVB-T Modulator</a></li>
-			<li>HTTP (MPEG-TS, HLS)</li>
-			<li>UDP/RTP</li>
-			<li>MPEG-TS Файлы</li>
-		</ul>
-	</div>
-	<div class="col-sm-4">
-		<h3>Обработка</h3>
-		<ul class="feature-list">
-			<li>Дешифрование: DVB-CI</li>
-			<li>Шифрование: SimulCrypt, BISS</li>
-			<li>Демультиплексирование - формирование каналов для передачи по IP сетям</li>
-			<li>Мультиплексирование - формирование потоков для передачи на DVB модуляторы</li>
-			<li>T2-MI Деинкапсуляция</li>
-			<li>Анализ принимаемых потоков</li>
-			<li>Резервирование входящих потоков</li>
-			<li>Фильтрация потоков и изменение служебных данных</li>
-		</ul>
-	</div>
-	<div class="col-sm-4">
-		<h3>Прочее</h3>
-		<ul class="feature-list">
-			<li>Скриптовый язык (Lua)</li>
-			<li>Удобный веб-интерфейс для настройки и мониторинга</li>
-			<li>Ограничение доступа к каналам</li>
-			<li>Телеметрия и мониторинг</li>
-			<li>API для управления</li>
-			<li>Экспорт EPG (XMLTV)</li>
-		</ul>
-		<h3>Требования</h3>
-		<ul class="feature-list">
-			<li>OS: на базе ядра Linux</li>
-			<li>CPU: x86, ARM</li>
-		</ul>
+
+<div class="row landing-block"><div class="col-sm-6">
+	<h3>Приём потоков</h3>
+	<ul>
+		<li>DVB, ATSC, ASI</li>
+		<li>IP: UDP, HLS, HTTP, RTSP</li>
+		<li>MPEG-TS Файлы</li>
+	</ul>
+</div></div>
+
+<div class="row landing-block"><div class="col-sm-6">
+	<h3>Обработка</h3>
+	<ul>
+		<li>Подготовка каналов</li>
+		<li>DVB-CI Дешифрование</li>
+		<li>Анализ потоков</li>
+		<li>Резервирование источников</li>
+	</ul>
+</div></div>
+
+<div class="row landing-block"><div class="col-sm-6">
+	<h3>Управление</h3>
+	<ul>
+		<li>Веб-интерфейс</li>
+		<li>Мониторинг в реальном времени</li>
+		<li>Графики телеметрии и отчёты</li>
+		<li>API</li>
+	</ul>
+</div></div>
+
+<div class="row landing-block"><div class="col-sm-6">
+	<h3>Вещание</h3>
+	<ul>
+		<li>Авторизация доступа</li>
+		<li>Подготовка потоков для кабельных, эфирных, и спутниковых сетей</li>
+		<li>IP: UDP, HLS, HTTP</li>
+	</ul>
+</div></div>
+
+<div class="row landing-block">
+	<div class="col text-center pt-5">
+		<a href="/ru/astra-quick-start/" class="btn btn-outline-primary btn-lg px-5" role="button">Начать Работу</a>
 	</div>
 </div>
-</article>

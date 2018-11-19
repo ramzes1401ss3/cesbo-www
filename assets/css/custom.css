@@ -59,21 +59,6 @@ dl>dd {
 	padding-bottom: 3px;
 }
 
-.feature-list {
-	list-style: none;
-	padding-left: 0;
-}
-.feature-list>li {
-	padding-bottom: .5em;
-}
-.feature-list>li::before {
-	content: "\26A1";
-	font-size: .5em;
-	padding-right: .5em;
-	position: relative;
-	top: -.3em;
-}
-
 .blog { list-style: none; padding-left: 0; }
 .blog .blog-item { margin-bottom: 1.5em; }
 .blog .blog-item:last-child { margin-bottom: 0; }
@@ -87,25 +72,60 @@ dl>dd {
 	margin-bottom: 3rem;
 }
 
-div.highlight {
-	overflow: hidden;
+/* Landing */
+
+.landing-header {
+	margin-bottom: 2.5rem;
 }
 
-pre.highlight {
-	border: solid 1px #ccc;
-	background-color: #fdfdfd;
-	font-size: 1rem;
-	padding: 0 1rem;
-	border-left: 10px solid #ccc;
-	overflow: auto;
+.landing-header h1 {
+	border: 0;
 }
 
-[class*="language-"] pre.highlight {
-	border-left: 10px solid #358ccb;
-	background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
-	background-size: 3em 3em;
-	background-origin: content-box;
+.landing-block {
+	position: relative;
+	border-top: thin solid #519ed4;
+	margin-bottom: 2.5rem;
 }
+
+.landing-block::before {
+	display: block;
+	position: absolute;
+	content: "";
+	width: 2rem;
+	height: 2rem;
+	left: 50%;
+	top: -1rem;
+	margin-left: -1rem;
+	border-width: 0 thin thin 0;
+	border-style: solid;
+	border-color: #519ed4;
+	transform: rotate(45deg);
+	background-color: #fff;
+}
+
+.landing-block>div {
+	margin-left: auto;
+}
+
+.landing-block ul {
+	list-style: none;
+	padding-left: 0;
+}
+
+.landing-block ul>li {
+	padding-bottom: .5em;
+}
+
+.landing-block ul>li::before {
+	content: "\26A1";
+	font-size: .5em;
+	padding-right: .5em;
+	position: relative;
+	top: -.3em;
+}
+
+/* Spinner */
 
 .loading { position: relative; left: 50%; }
 .loading:after { content: ""; display: table; clear: both; }
@@ -128,8 +148,28 @@ animIn 1s ease-in-out 0s infinite; }
 
 /* Rouge highlight */
 
+
+div.highlight {
+	overflow: hidden;
+}
+
+pre.highlight {
+	border: solid 1px #ccc;
+	background-color: #fdfdfd;
+	font-size: 1rem;
+	padding: 0 1rem;
+	border-left: 10px solid #ccc;
+	overflow: auto;
+}
+
+[class*="language-"] pre.highlight {
+	border-left: 10px solid #358ccb;
+	background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+	background-size: 3em 3em;
+	background-origin: content-box;
+}
+
 .highlight .hll { background-color: #ffffcc }
-.highlight  { background: #ffffff; }
 .highlight .c { color: #999988; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .highlight .k { font-weight: bold } /* Keyword */
