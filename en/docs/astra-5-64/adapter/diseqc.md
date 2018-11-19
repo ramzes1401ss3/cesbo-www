@@ -1,12 +1,15 @@
 layout: frame
 lang: ru
-title: Настройка diseqc
+title: diseqc
 ---
 
 #### DiSEqC - Digital Satellite Equipment Control
-**DISEQC MODE** - режим DiSEqC:  
+**DISEQC MODE**
 
- - **Default: DiSEqC 1.0** - по умолчанию, не используется, возможные значения: 1, 2, 3, 4
- - **DiSEqC 1.1** - возможные значения: 1 - 16
- - **Tone Burst** - возможные значения: A, B
- - **DiSEqC Command** - отправить команду для DiSEqC
+ - **Default: DiSEqC 1.0** - default, not used, possible values: 1, 2, 3, 4
+ - **DiSEqC 1.1** - possible value: 1 - 16
+ - **Tone Burst** - possible value: A, B
+ - **DiSEqC Command** - send command for DiSEqC
+
+
+
