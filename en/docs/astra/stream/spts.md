@@ -8,7 +8,7 @@ css:
 
 ##### Enable
 
-By the default stream enabled.
+ <span class="icon icon-move"></span> By the default stream enabled.
 
 ##### Name
 
