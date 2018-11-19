@@ -1,25 +1,29 @@
 ---
 layout: frame
-lang: ru
-title: Настройка адаптера
+lang: en
+title: general
 ---
 
 ### General
-**NAME** - имя адаптера  
-**ID** - идентификатор адаптера, при создании нового адаптера генерируется автоматически, возможно использование своего ID  
-**ADAPTER** - выбор DVB адаптера из списка обнаруженных. (если в списке Вы не видите нужного Вам адаптера, или там нет ни одного адаптера - проверьте корректность установки адаптера в сервере или его драйверов  
-**TYPE** - тип адаптера, возможные значения:  
+**NAME** - adapter name    
+**ID** - adapter ID, when creating a new adapter is generated automatically, you can use your ID  
+**ADAPTER** - select DVB adapter from the list of detected. (if you do not see the adapter you need in the list, or there is no adapter there, check the correctness of the adapter installation in the server or it drivers  
+**TYPE** - adapter type, possible values:  
+
 
 #### DVB-S, DVB-S2
-- FREQUENCY - частота несущей (950-13250 MHz)
-- POLARIZATION - поляризация (Vertical, Horizontal, Right, Left)
-- SYMBOLRATE - символьная скорость (1000-50000 Kbaud)
+- **FREQUENCY** - carrier frequency (950-13250 MHz)  
+- **POLARIZATION** - polarization (Vertical, Horizontal, Right, Left)  
+- **SYMBOLRATE** - symbol rate (1000-50000 Kbaud)  
+
 ---
-#### DVB-T, DVB-T2, ATSC, ISDB-T
-- FREQUENCY - частота несущей (0-1000 MHz)
+#### DVB-T, DVB-T2, ATSC, ISDB-T  
+- **FREQUENCY** - carrier frequency (0-1000 MHz)  
+
 ---
 #### DVB-C, DVB-C (Annex A), DVB-C (Annex B), DVB-C (Annex C), DVB-ASI
- - FREQUENCY - частота несущей (80-1000 MHz)
- - SYMBOLRATE - символьная скорость (1000-10000 Kbaud)
+- **FREQUENCY** - carrier frequency (80-1000 MHz)  
+- **SYMBOLRATE** - symbol rate (1000-10000 Kbaud)  
+
 ---
-Remove - удаление адаптера и всех каналов связанных с ним
+**Remove** - remove the adapter and all channels associated with it  
