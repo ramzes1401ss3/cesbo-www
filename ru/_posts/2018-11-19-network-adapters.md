@@ -1,24 +1,24 @@
 ---
 layout: post
-lang: en
+lang: ru
 title: Network adapters
 tags: [dev]
 ---
 
-## Network adapters
+## Сетевые адаптеры
 
 <!-- more -->
 
-### How to see information about losses
-Keywords words: missed, dropped, fifo, error, rx.  
+### Как узнать информацию о потерях
+Ключевые слова: missed, dropped, fifo, error, rx.  
 `ip -s -s link show eth1`  
 
-You need to look at RX Errors. Some network cards provide more detailed information about the nature of the loss:  
+Нужно проверить ошибки RX. Некоторые сетевые карты предоставляют более подробную информацию о потерях:  
 `ethtool -S eth1`
 
-Losses can be not only on the network cards of your server. They can also be on the network equipment port. You can learn how to see it from the documentation of the network equipment manufacturer.  
+Потери могут быть не только на сетевых картах вашего сервера. Они также могут находиться на порту сетевого оборудования. Вы можете узнать, как это увидеть из документации производителя сетевого оборудования.  
 
-### The size of the buffer of the network card  
+### Размер буфера сетевой карты  
 ```
 [root@astra ~]# ethtool -g eth1
 Ring parameters for eth1:
@@ -33,6 +33,6 @@ RX Mini:	0
 RX Jumbo:	0
 TX:		256
 ```
-Here we can see the rx-buffer increased by the maximum. Usually it is quite difficult to find the value. The most optimal is some "average" value. With a high-frequency and multi-core processor (>3GHz), you can get closer to the maximum/maximum buffer.   
-Example of a command to increase the buffer:  
+Здесь мы видим, что rx-буфер увеличен до максимума. Обычно найти верное значение довольно сложно. Наиболее оптимальным является некоторое «среднее» значение. С высокочастотным и многоядерным процессором (> 3GHz) вы можете получить хорошие результаты с максимальным размером буфера. 
+Пример команды для увеличения буфера: 
 `ethtool -G eth1 rx 2048`  
