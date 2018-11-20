@@ -1,22 +1,22 @@
 ---
 layout: post
-lang: en
-title: Reset Password
+lang: ru
+title: Сброс пароля
 tags: [dev]
 ---
 
-### Reset Password
+### Сброс пароля  
 
 <!-- more -->
 
-This method works with any Astra version
+Этот метод работает с любой версией Astra  
 
-Connect to your server and launch in console:
+Подключитесь к своему серверу и выполните в консольи команду:  
 
 `sh <(wget -qO- https://cesbo.com/download/astra/scripts/pass.sh)`  
-Confirm password reset. If you have several processes, script asks confirmation for each. 
-Restart Astra and login to the web interface with default login and password: admin  
+Подтвердите сброс пароля. Если у вас несколько процессов, скрипт запрашивает подтверждение для каждого. Перезапустите Astra и войдите в веб-интерфейс с именем и паролем по умолчанию: **admin**  
 
-This script looking running processes with name astra. If you use different process name (eg. renamed binary file), then append process name to the end of the command line. Example:
+Этот скрипт ищет запущенные процессы с именем astra . Если вы используете другое имя процесса (например, переименованный исполняемый файл), добавьте имя процесса в конец командной строки.   
 
+Пример:  
 `sh <(wget -qO- https://cesbo.com/download/astra/scripts/pass.sh) a561`
