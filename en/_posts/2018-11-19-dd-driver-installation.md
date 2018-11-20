@@ -127,5 +127,6 @@ If adapters connected to the PCIe properly you will see listing of the PCIe adap
 Check system boot log for errors:
 `dmesg | grep -i dvb`
 You may send this log to the adapter vendor to find a solution.
-Drivers has been installed some time ago and all worked fine before server reboot
+
+#### Drivers has been installed some time ago and all worked fine before server reboot
 Probably Linux kernel has been updated. After Linux kernel update drivers should be reinstalled.

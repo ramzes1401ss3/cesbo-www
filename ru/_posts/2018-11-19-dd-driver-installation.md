@@ -1,20 +1,20 @@
 ---
 layout: post
-lang: en
-title: DigitalDevices Driver Installation
+lang: ru
+title: Установка драйверов DigitalDevices
 tags: [dev]
 ---
 
-## DigitalDevices Driver Installation
+## Установка драйверов DigitalDevices
 
 <!-- more -->
 
-### Prepare system
-To install drivers needed root privileges:  
+### Подготовка системы
+Для установки драйверов необходимы права root:  
 `sudo -s`
 
 
-Install system utilities to build drivers from the source code:  
+Установка системных утилит для сборки драйвера из исходников::  
 ```
 apt-get install build-essential \
     patchutils \
@@ -24,7 +24,7 @@ apt-get install build-essential \
 ```
 
 
-#### Remove old media drivers:  
+#### Удалите старые драйвера:  
 
 ```
 rm -rf /lib/modules/$(uname -r)/extra
@@ -33,32 +33,32 @@ rm -rf /lib/modules/$(uname -r)/kernel/drivers/staging/media
 ```
 
 
-#### Disable auto update in Ubuntu 14.04  
+#### Отключите автоматическое обновление в Ubuntu 14.04  
 
 `sed -i.bak -e 's/^\(APT::Periodic::Update-Package-Lists\).*/\1 "0";/g' /etc/apt/apt.conf.d/10periodic`
 
-#### Disable auto update in Ubuntu 16.04
+#### Отключите автоматическое обновление в Ubuntu 16.04
 ```
 systemctl disable apt-daily.service
 systemctl disable apt-daily.timer
 ```
 
 
-### Install
+### Установка
 
-#### Download latest driver from the official repository:
+#### Скачать последнюю версию драйвера из официального репозитория:  
 ```
 git clone --depth=1 https://github.com/DigitalDevices/dddvb -b 0.9.29 /usr/src/dddvb
 cd /usr/src/dddvb
 ```
-By the default driver has limit only for 8 DVB adapters. Remove this limit before build drivers:
+По умолчанию драйвер имеет ограничение в 8 DVB-адаптеров. Отключим это ограничение перед сборкой:
 
 ```
 sed -i \
     -e 's/^#if defined(CONFIG_DVB_MAX_ADAPTERS).*$/#if 0/g' \
     dvb-core/dvbdev.h
 ```    
-If you have more than 64 adapters (for example 10 MaxS8) need to increase limit in the driver:
+Если у вас есть более 64 адаптеров (например, 10 MaxS8) необходимо внести изменения в драйвер: 
 
 ```
 sed -i \
@@ -69,63 +69,65 @@ sed -i \
     -e 's/^\(#define MAX_DVB_MINORS*\).*/\1 512/g' \
     dvb-core/dvbdev.c
  ```
-Build drivers and install it:
+Соберите драйвер и установите его:  
 ```
 make
 make install
 ```
-Create a list of module dependencies:  
+Создание списка зависимостей модулей:  
 ```
 mkdir -p /etc/depmod.d
 echo 'search extra updates built-in' >/etc/depmod.d/extra.conf
 depmod -a
 ```
 
-Create configuration file for MaxS8 DVB adapters:  
+Создайте файл конфигурации для адаптеров MaxS8:  
 `echo 'options ddbridge fmode=X' >/etc/modprobe.d/ddbridge.conf`  
-Replacing X with the mode number. See MaxS8 user manual.  
+Замените `X` на номер модели. См. руководство пользователя Max S8.    
 
-To launch installed drivers restart your system:  
+Для применения изменений перезагрузите компьютер:  
 `shutdown -r now`  
 
-After reboot check adapters:  
+После перезагрузки - проверьте наличие адаптеров в системе:  
 `ls /dev/dvb`  
 
-Should be listed all adapters installed in the system:  
+В ответ - должны быть перечислены все адаптеры, установленные в системе:    
 ```
 adapter0 adapter1 adapter2 adapter3 adapter4 adapter5 adapter6 adapter7
 ```
 
-### Troubleshooting
+### Решение проблем
 
 
-#### Signal is fine, but channels don't work
+#### Сигнал в порядке, но каналы не работают
 
-Check dmesg output for i2c errors:  
+Проверьте вывод dmesg на наличие ошибок i2c:    
 `dmesg | grep i2c`
-if you see messages like i2c_write error then turn off MSI (Message Signaled Interrupts) in the driver:  
+если вы видите сообщения вроде i2c_write error, то отключите MSI (Message Signaled Interrupts) в драйвере:  
 
-Open `/etc/modprobe.d/ddbridge.conf` in any text editor  
-Find options ddbridge … line  
-After the ddbridge append msi=0 option. For example: **options ddbridge msi=0 fmode=1**  
-If file does not exists, then create it and write:    
+Откройте `/etc/modprobe.d/ddbridge.conf` в любом текстовом редакторе 
+Найдите строку ddbridge …   
+После ddbridge добавьте параметр msi=0. Например:**options ddbridge msi=0 fmode=1**  
+Если файл не существует, то создайте его и впишите:
 `options ddbridge msi=0`  
 
-#### DVB adapters are not available
+#### Адаптеры DVB отсутствуют
 
-If ls /dev/dvb shows error:  
+Если команда `ls /dev/dvb` выдает ошибку:  
 `ls: cannot access /dev/dvb: No such file or directory`  
-With lspci you may check is adapters available in the system:  
+С помощью команды `lspci` вы можете проверить, присутствуют ли адаптеры в системе:  
 `lspci | grep Multimedia` 
 
-If adapters connected to the PCIe properly you will see listing of the PCIe adapters. For example:  
+Если адаптеры подключены к PCIe правильно, вы увидите список адаптеров PCIe. Например:  
 ```
 01:00.0 Multimedia controller: TBS Technologies DVB-S2 4 Tuner PCIe Card
 01:00.0 Multimedia controller: Digital Devices GmbH Cine V7
 ```
 
-Check system boot log for errors:
+Проверьте boot.log на наличие ошибок:
 `dmesg | grep -i dvb`
-You may send this log to the adapter vendor to find a solution.
-Drivers has been installed some time ago and all worked fine before server reboot
-Probably Linux kernel has been updated. After Linux kernel update drivers should be reinstalled.
+Этот журнал можно отправить производителю адаптера для поиска решения.
+
+#### Драйверы были установлены и все работало нормально до перезагрузки сервера 
+Вероятно, ядро Linux было обновлено. После обновления ядра Linux необходимо переустановить драйвер.
+

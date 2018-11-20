@@ -1,20 +1,22 @@
 ---
 layout: post
-lang: en
-title: TBS Driver Installation
+lang: ru
+title: Установка драйверов TBS
 tags: [dev]
 ---
 
-## TBS Driver Installation
+## Установка драйверов TBS
+
+---
 
 <!-- more -->
 
-### Prepare system
-To install drivers needed root privileges:  
+### Подготовка системы
+Для установки драйверов необходимы права root:  
 `sudo -s`
 
 
-Install system utilities to build drivers from the source code:  
+Установка системных утилит для сборки драйвера из исходников::  
 ```
 apt-get install build-essential \
     patchutils \
@@ -24,7 +26,7 @@ apt-get install build-essential \
 ```
 
 
-#### Remove old media drivers:  
+#### Удалите старые драйвера:  
 
 ```
 rm -rf /lib/modules/$(uname -r)/extra
@@ -33,22 +35,19 @@ rm -rf /lib/modules/$(uname -r)/kernel/drivers/staging/media
 ```
 
 
-#### Disable auto update in Ubuntu 14.04  
+#### Отключите автоматическое обновление в Ubuntu 14.04  
 
 `sed -i.bak -e 's/^\(APT::Periodic::Update-Package-Lists\).*/\1 "0";/g' /etc/apt/apt.conf.d/10periodic`
 
-#### Disable auto update in Ubuntu 16.04
+#### Отключите автоматическое обновление в Ubuntu 16.04
 ```
 systemctl disable apt-daily.service
 systemctl disable apt-daily.timer
 ```
 
+### Установка
 
-### Install
-
-#### Install
-
-##### Downloading and building:
+##### Загрузка и билдинг:
 ``` 
 cd /usr/src
 git clone https://github.com/tbsdtv/media_build.git
@@ -60,41 +59,43 @@ make -j4
 sudo make install
 ``` 
 
-Install firmware for DVB adapters
+Установите  firmware для DVB адаптеров:  
 ``` 
 cd /usr/src
 wget http://www.tbsdtv.com/download/document/linux/tbs-tuner-firmwares_v1.0.tar.bz2
 sudo tar jxvf tbs-tuner-firmwares_v1.0.tar.bz2 -C /lib/firmware/
 ``` 
 
-To launch installed drivers restart your system:  
+Для применения изменений перезагрузите компьютер:  
 `shutdown -r now`  
 
-After reboot check adapters:  
+После перезагрузки - проверьте наличие адаптеров в системе:  
 `ls /dev/dvb`  
 
-Should be listed all adapters installed in the system:  
+В ответ - должны быть перечислены все адаптеры, установленные в системе:    
 ```
 adapter0 adapter1 adapter2 adapter3 adapter4 adapter5 adapter6 adapter7
 ```
 
-### Troubleshooting
+### Решение проблем
 
-#### DVB adapters are not available
+#### Адаптеры DVB отсутствуют
 
-If ls /dev/dvb shows error:  
+Если команда `ls /dev/dvb` выдает ошибку:  
 `ls: cannot access /dev/dvb: No such file or directory`  
-With lspci you may check is adapters available in the system:  
+С помощью команды `lspci` вы можете проверить, присутствуют ли адаптеры в системе:  
 `lspci | grep Multimedia` 
 
-If adapters connected to the PCIe properly you will see listing of the PCIe adapters. For example:  
+Если адаптеры подключены к PCIe правильно, вы увидите список адаптеров PCIe. Например:  
 ```
 01:00.0 Multimedia controller: TBS Technologies DVB-S2 4 Tuner PCIe Card
 01:00.0 Multimedia controller: Digital Devices GmbH Cine V7
 ```
 
-Check system boot log for errors:
+Проверьте boot.log на наличие ошибок:
 `dmesg | grep -i dvb`
-You may send this log to the adapter vendor to find a solution.
-Drivers has been installed some time ago and all worked fine before server reboot
-Probably Linux kernel has been updated. After Linux kernel update drivers should be reinstalled.
+Этот журнал можно отправить производителю адаптера для поиска решения.
+
+#### Драйверы были установлены и все работало нормально до перезагрузки сервера 
+Вероятно, ядро Linux было обновлено. После обновления ядра Linux необходимо переустановить драйвер.
+
