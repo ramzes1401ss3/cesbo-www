@@ -1,20 +1,21 @@
 ---
 layout: post
-lang: en
+lang: ru
 title: Bind Adapters
 tags: [dev]
 ---
 
-## Bind Adapters
+## Привязка адаптеров
 
 <!-- more -->
 
-When the server boot, DVB adapters can be initialized randomly, which will cause the adapters to swap places. As an example: DVB adapter connected to Eutelsat 36B will be swapped with an adapter connected to ABS 2 at 75.0°E. to prevent this situation, follow these steps:  
+При загрузке сервера адаптеры DVB могут быть инициализированы случайным образом, что приведет к тому, что алаптеры будут перепутаны. В качестве примера: адаптер DVB, подключенный к Eutelsat 36B, будет перепутан с адаптером, подключенным к ABS 2 при 75,0 ° E.   
+Для предотвращения этой ситуации выполните следующие действия:
 
-create folder `/etc/astra/mod:`
+Создайте папку `/etc/astra/mod`:  
 
 `mkdir /etc/astra/mod`
-run command:
+Выполните команду:
 
-`astra --dvbls -o /etc/astra/mod/dvb.lua`
-after that - the current adapters will be written to the `/etc/astra/mod/dvb.lua` file and used when initializing astra
+`astra --dvbls -o /etc/astra/mod/dvb.lua`  
+после этого - текущие адаптеры будут записаны в файл  `/etc/astra/mod/dvb.lua` и использоватся при запуске Астры. 
