@@ -2,11 +2,13 @@
 layout: frame
 lang: en
 title: Stream Settings
+css:
+  - /assets/css/icons.css
 ---
 
 ##### Enable
 
-By the default stream enabled.
+ <span class="icon icon-move"></span> By the default stream enabled.
 
 ##### Name
 
