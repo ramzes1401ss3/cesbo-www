@@ -1,115 +1,62 @@
 ---
 layout: post
 lang: en
-title: Access Authorization
+title: Access authorization
 tags: [dev]
 ---
 
-Authorization allow to control an access to the channels and allow to keep a statistics of watching.
+### Access authorization
 
 <!-- more -->
 
-##  Access Authorization.  
-Authorization allow to control an access to the channels and allow to keep a statistics of watching.
+Authorization allows you to control access to channels and allows you to save viewing statistics.
 
-## Introduction
+#### Enable authorization:
 
- Authorization allow controlling access to the channels and keeping a statistics of watching.  
- Authorization works only with HTTP and HLS protocols. In other cases, to restrict an access could be used **Stream Scrambling**.  
- 
- Scripting language allow implementing many authorization schemes.   
+Go to Settings -> HTTP Authentication and check the check box **Enable built-in HTTP/HLS authentication**  
+After that - click the "Apply & Restart" button after this action - users (in the Settings -> Users section) will have additional authorization types.
 
-Examples:  
-The authorization schema described in the script.  
-For version 5.62 and newer script could be saved in the `/etc/astra/mod` directory. For windows `C:\astra\mod`   
-Script will be automatically loaded on launch. For any other version path to the script could be defined in the command line:   `astra -c /etc/astra/example.conf -p 8000 /etc/astra/auth.lua`   
-On access to the channels with HTTP Play, other settings is not required. In other cases, append the auth option to the Output in the Stream settings. Example: `http://0:5000/channel-id#auth` 
+### Users
 
-Define the auth_request function in the script.:
-
-```
-function auth_request(client_id, request, callback)
-    if not request then
-        -- closing connection to client
-        return nil
-    end
-    -- processing a client request
-    callback(true)
-end
-```
-The function called on a request processing and after connection closing. Function accepts three arguments:
-- **client_id** — unique connection number
-- **request** — table with the request information. Argument passed only on a request processing
-- **callback** — function, to complete authorization, accept one argument: true - allow access, false - deny access, client get the error 403 Forbidden
+This type of authorization will allow you to use tokens, access by ip, login/password, limiting connections and the ability to set the date on which the user is active.  
 
 
-## Limiting connections from a single IP address
+Go to Settings -> Users, and in the upper right corner click on the NEW USER button. The add user window will open.  
 
-single_ip.lua
+##IMG
 
-- **limit** — limit of the connections from the single IP
-- **on_start** — function, on a request processing. 
-Select a list of the client identifiers client_id_list from the table ip_list by the IP address. 
-If the number of the client identifiers greater than the limit value, then close a connection for the first client  
-- **on_stop** — function, on connection closing. Remove client identifier from the client_id_list  
+Description of fields:  
 
+- **LOGIN** - Username. (example "testuser")  
+- **PASSWORD** - password (example "87326848") 
+- **COMMENT** - comment (example "test user") 
+- **TYPE** - user type:  
+  - **user** - cannot access the web interface. The account is used only for authorization (for example in VLC)
+  - **observer** - adds access rights to the web interface with read-only rights 
+  - **administrator** - full access rights.  
+- **TOKEN** - token (example "8732684ydbeb8")  
+- **IP** - IP address of the user.   
+- **STB** - option reserved for middleware  
+- **EXPIRATION** - It is possible to set the time for which the account will be active.   
+- **LIMIT CONNECTIONS** - limiting connections to client devices.  
+- **PACKAGES** - channel packages.   
 
-## Limiting connections by the IP addresses
+client authorization examples: 
+**stream address?auth=testuser:87326848** (login and password)   
+**stream address?token=112277668833743** (token)  
 
-limit_by_ip.lua
+### HTTP Authentication
 
-Description of the script:
-- **access_list** — list of the IP addresses and sub-networks
-- **ip_to_number** — convert IPv4 address to the 32-bit number
-- **mask_to_number** — convert network mast to the 32-bit number
-- **parse_access_list** — convert access_list on script launch, for better performance
-- **ip_check** — check IP address
+#### MINISTRA/STALKER AUTORIZATION  
+В поле вводится адрес сталкер портала (например "http://testdomain.com/stalker_portal")  
+Опция включает поддержку "Temporary URL" для работы с Ministra/Stalker portal  
+В настройках Ministra/Stalker portal включите опцию "Temporary URL - Flussonic support"  
 
+#### ALLOW ACCESS WITHOUT AUTHORIZATIONNEW IP
 
-## GeoIP access restrictions
+It is possible to add IP addresses / networks whose users will have access to streams without authorization.
 
-An example shows how to communicate with GeoIP service. How to allow access for customers from the specific country:  
+#### DENY ACCESSNEW IP
 
-geoip.lua
-
-When client connected, Astra sends a request to the GeoIP service freegeoip.net. 
-
-Description of the script:
-- **allow_country** — list of the country codes ISO 3166-1 alpha-2
-- **on_response** — function, processing GeoIP service response. This example grant access in next cases: Response code is not equal to 200 Ok Response not contain information about the IP The country code is not found in the allow_country auth_request — function, sends a request to http://freegeoip.net/json/Clien-IP-Address
-
-
-## Integration with Stalker Middleware
-
-In the Stalker settings turn on Temporary URL - Flussonic support  
-
-stalker.lua
-
-Description of the script:
-- **stat_list** — table to store information about sessions: name - stream name, addr - client IP address, time - the time of start of the stream
-- **auth_request** — append information about the sessions to the stat_list, on closing connection calculate the total time of the connection and write to the log if connection time greater than 1 minute
-
-
-## Retrieve IP address from X-Real-IP
-
-Method used to replace connection IP address by IP address defined in the HTTP header **X-Real-IP** or **X-Forwarded-For**
-
-xrealip.lua
-
-
-## Authorization by login/password and tokens
-
-- Authentication by token;
-- IP address validation (optional);
-- Redirect to additional server;
-- Limit connections for same user;
-- Channels without authentication;
-- Packages;
-- Redirect to the promo channel.
-
-auth.lua
-
-Client authorization:  
-**stream address?auth=admin:admin** (login and password)  
-**stream address?token=112277668833743** (token)
+Black list. It is possible to add IP addresses / networks whose users will not have access to streams, even if they have a login / password or a token.
 
