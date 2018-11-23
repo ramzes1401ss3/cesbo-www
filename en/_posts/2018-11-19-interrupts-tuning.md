@@ -5,12 +5,9 @@ title: Interrupts Tuning
 tags: [dev]
 ---
 
-### Interrupts Tuning
-
-<!-- more -->
-
 An interrupt request allow to communicate between hardware and operating system. For CPU load optimization recommended to setup CPU affinity for IRQ also known as IRQ Balancing. 
 
+<!-- more -->
 Information about interrupts available in the **/proc/interrupts**. File format:  
 
 ```

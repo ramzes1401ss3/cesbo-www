@@ -5,12 +5,9 @@ title: Reset Password
 tags: [dev]
 ---
 
-### Reset Password
-
-<!-- more -->
-
 This method works with any Astra version
 
+<!-- more -->
 Connect to your server and launch in console:
 
 `sh <(wget -qO- https://cesbo.com/download/astra/scripts/pass.sh)`  

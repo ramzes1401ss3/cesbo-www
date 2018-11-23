@@ -5,12 +5,10 @@ title: IGMP Version
 tags: [linux,network,tuning]
 ---
 
-## IGMP Version
-
-<!-- more -->
-
 The IGMP version could be defined in the /etc/sysctl.conf file. For example setup IGMPv2 for eth1 interface:    
 `net.ipv4.conf.eth1.force_igmp_version=2`  
+
+<!-- more -->
 
 To apply changes restart system or launch:    
 `sysctl -p`  

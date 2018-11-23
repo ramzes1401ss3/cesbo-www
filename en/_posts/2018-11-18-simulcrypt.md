@@ -4,10 +4,7 @@ lang: en
 title: Simulcrypt
 tags: [dev]
 ---
-
-## Simulcrypt
 Simulcrypt - is a DVB protocol to enable use of multiple Conditional Access Systems in the same channel at the same time.
-
 
 <!-- more -->
 

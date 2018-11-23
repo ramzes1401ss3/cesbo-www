@@ -5,15 +5,11 @@ title: DigitalDevices Driver Installation
 tags: [dev]
 ---
 
-## DigitalDevices Driver Installation
-
-<!-- more -->
-
 ### Prepare system
 To install drivers needed root privileges:  
 `sudo -s`
 
-
+<!-- more -->
 Install system utilities to build drivers from the source code:  
 ```
 apt-get install build-essential \

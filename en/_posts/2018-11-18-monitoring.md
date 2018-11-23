@@ -5,11 +5,9 @@ title: Monitoring
 tags: [dev]
 ---
 
-## Monitoring. Export statistics and events
+Export of statistics and events allows you to transfer data on the status of incoming streams, DVB adapter via HTTP in JSON format. 
 
-<!-- more -->
-
-Export of statistics and events allows you to transfer data on the status of incoming streams, DVB adapter via HTTP in JSON format.   
+<!-- more -->  
 To activate the export of statistics and events, you must specify the address of the monitoring server `http://example.local:port/path`.   
 The address of the monitoring server can be specified in the web interface: `Settings → General → Monitoring`.   
 If you are configuring with scripts, you can specify the address at the beginning of the script: init_event_request("ADDRESS").   
