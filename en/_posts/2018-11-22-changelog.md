@@ -7,6 +7,7 @@ tags: [changelog]
 
 - **HbbTV**: drop original AIT stream if "HbbTV URL" defined
 - **HTTP Output**: HTTP headers for CORS
+<!-- more -->
 - **HTTP Output**: fix crash on apply stream changes with disabled sessions
 - **HLS Output**: any name for index file
 - **HLS Output**: relative full path in the .m3u8 (for example /play/a001/segment.ts instead of segment.ts)
