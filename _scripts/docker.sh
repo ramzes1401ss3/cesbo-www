@@ -25,7 +25,7 @@ if [ "$1" = "x" ]; then
         docker pull "node:latest"
     fi
 
-    docker run --rm -it \
+    docker run --rm \
         -w "$BASE_DIR" -v "$PWD:$BASE_DIR" \
         "node" node ./_scripts/build-index.js
 
@@ -35,7 +35,7 @@ else
         docker pull "jekyll/jekyll:latest"
     fi
 
-    docker run --rm -it \
+    docker run --rm \
         -w "$BASE_DIR" -v "$PWD:$BASE_DIR" \
         -v "$PWD/.gems-cache:/usr/local/bundle" \
         -p "35729:35729" -p "4000:4000" \
