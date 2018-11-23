@@ -14,7 +14,7 @@ EOF
     exit 1
 fi
 
-cd $(dirname $0)
+cd $(dirname $0) && cd ..
 export MSYS_NO_PATHCONV=1
 
 BASE_DIR="/srv/jekyll/cesbo.com"
