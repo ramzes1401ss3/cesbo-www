@@ -1,17 +1,15 @@
 ---
 layout: post
 lang: ru
-title: Network adapters
+title: Сетевые адаптеры
 tags: [dev]
 ---
 
-## Сетевые адаптеры
-
-<!-- more -->
-
 ### Как узнать информацию о потерях
 Ключевые слова: missed, dropped, fifo, error, rx.  
-`ip -s -s link show eth1`  
+`ip -s -s link show eth1` 
+
+<!-- more -->
 
 Нужно проверить ошибки RX. Некоторые сетевые карты предоставляют более подробную информацию о потерях:  
 `ethtool -S eth1`
