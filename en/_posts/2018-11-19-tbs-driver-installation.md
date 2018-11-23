@@ -7,11 +7,9 @@ tags: [dev]
 
 ### Prepare system
 To install drivers needed root privileges:  
-
-<!-- more -->
-
 `sudo -s`
 
+<!-- more -->
 
 Install system utilities to build drivers from the source code:  
 ```
