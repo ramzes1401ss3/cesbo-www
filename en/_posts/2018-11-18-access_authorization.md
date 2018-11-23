@@ -5,11 +5,9 @@ title: Access authorization
 tags: [dev]
 ---
 
-### Access authorization
+Authorization allows you to control access to channels and allows you to save viewing statistics.
 
 <!-- more -->
-
-Authorization allows you to control access to channels and allows you to save viewing statistics.
 
 #### Enable authorization:
 

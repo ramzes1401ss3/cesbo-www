@@ -5,11 +5,10 @@ title: Bind Adapters
 tags: [dev]
 ---
 
-## Bind Adapters
+When the server boot, DVB adapters can be initialized randomly, which will cause the adapters to swap places. 
 
 <!-- more -->
-
-When the server boot, DVB adapters can be initialized randomly, which will cause the adapters to swap places. As an example: DVB adapter connected to Eutelsat 36B will be swapped with an adapter connected to ABS 2 at 75.0°E. to prevent this situation, follow these steps:  
+As an example: DVB adapter connected to Eutelsat 36B will be swapped with an adapter connected to ABS 2 at 75.0°E. to prevent this situation, follow these steps:  
 
 create folder `/etc/astra/mod:`
 
