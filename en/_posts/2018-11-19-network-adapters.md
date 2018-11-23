@@ -2,7 +2,7 @@
 layout: post
 lang: en
 title: Network adapters
-tags: [dev]
+tags: [linux,network,tuning]
 ---
 
 ### How to see information about losses

@@ -2,7 +2,7 @@
 layout: post
 lang: ru
 title: Сетевые адаптеры
-tags: [dev]
+tags: [linux,network,tuning]
 ---
 
 ### Как узнать информацию о потерях

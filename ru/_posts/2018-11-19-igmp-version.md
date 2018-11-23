@@ -2,7 +2,7 @@
 layout: post
 lang: ru
 title: IGMP Version
-tags: [dev]
+tags: [linux,network,tuning]
 ---
 
 ## Версия IGMP 
