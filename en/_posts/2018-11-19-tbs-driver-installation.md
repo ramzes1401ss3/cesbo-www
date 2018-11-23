@@ -5,12 +5,11 @@ title: TBS Driver Installation
 tags: [dev]
 ---
 
-## TBS Driver Installation
+### Prepare system
+To install drivers needed root privileges:  
 
 <!-- more -->
 
-### Prepare system
-To install drivers needed root privileges:  
 `sudo -s`
 
 
