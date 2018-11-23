@@ -79,6 +79,9 @@ function globalKeyHandler(e) {
 function init(index) {
 	searchIndex = elasticlunr.Index.load(index);
 
+	var x = $('#search-loader');
+	x.parentNode.removeChild(x);
+
 	searchBar.removeAttribute('disabled');
 	searchBar.on('input', searchBarInput);
 
