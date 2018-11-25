@@ -1,6 +1,6 @@
 ---
 layout: post
-lang: en
+lang: ru
 title: Astra 5.64 Changelog
 tags: [changelog]
 ---

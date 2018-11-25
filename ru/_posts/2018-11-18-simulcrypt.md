@@ -1,6 +1,6 @@
 ---
 layout: post
-lang: en
+lang: ru
 title: Simulcrypt
 tags: [dev]
 ---
