@@ -1,9 +1,7 @@
-.foc {
-width: 150px; 
-cursor:pointer; 
-display:inline;
-}
-.foc:focus {
-width: auto; 
-z-index: 100;
-}
+	img.zoom {
+	cursor: pointer;
+	max-width: 150px;
+	}
+	img.zoom:hover {
+	max-width: none;
+	}
