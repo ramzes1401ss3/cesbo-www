@@ -46,16 +46,16 @@ tags: [dev]
 
 ### HTTP Authentication
 
-#### MINISTRA/STALKER AUTORIZATION  
+###### MINISTRA/STALKER AUTORIZATION  
 В поле вводится адрес сталкер портала (например "http://testdomain.com/stalker_portal")  
 Опция включает поддержку "Temporary URL" для работы с Ministra/Stalker portal  
 В настройках Ministra/Stalker portal включите опцию "Temporary URL - Flussonic support"  
 
-#### ALLOW ACCESS WITHOUT AUTHORIZATIONNEW IP
+###### ALLOW ACCESS WITHOUT AUTHORIZATIONNEW IP
 
 Возможно добавить IP адреса/сети, пользователи которых будут иметь доступ к стримам без авторизации.  
 
-#### DENY ACCESSNEW IP
+###### DENY ACCESSNEW IP
 
 Черный список. Возможно добавить IP адреса/сети, пользователи которых не будут иметь доступ к стримам, да же при наличии логина/пароля или токена.
 

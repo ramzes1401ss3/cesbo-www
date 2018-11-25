@@ -48,16 +48,16 @@ client authorization examples:
 
 ### HTTP Authentication
 
-#### MINISTRA/STALKER AUTORIZATION  
+###### MINISTRA/STALKER AUTORIZATION  
 В поле вводится адрес сталкер портала (например "http://testdomain.com/stalker_portal")  
 Опция включает поддержку "Temporary URL" для работы с Ministra/Stalker portal  
 В настройках Ministra/Stalker portal включите опцию "Temporary URL - Flussonic support"  
 
-#### ALLOW ACCESS WITHOUT AUTHORIZATIONNEW IP
+###### ALLOW ACCESS WITHOUT AUTHORIZATIONNEW IP
 
 It is possible to add IP addresses / networks whose users will have access to streams without authorization.
 
-#### DENY ACCESSNEW IP
+###### DENY ACCESSNEW IP
 
 Black list. It is possible to add IP addresses / networks whose users will not have access to streams, even if they have a login / password or a token.
 
