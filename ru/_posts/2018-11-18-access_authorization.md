@@ -14,7 +14,7 @@ css:
 
 Перейдите в раздел Settings -> HTTP Authentication и установите галочку в чекбоксе **Enable built-in HTTP/HLS authentication**  
 
-![Image](/assets/post-img/authentication.png){:class="big"}
+![Image](/assets/post-img/authentication.png){:class="zoom"}
 
 После этого - нажмите кнопку "Apply & Restart" после данного действия - у пользователей (в разделе Settings -> Users) появятся дополнительные типы авторизации.
 
