@@ -6,7 +6,7 @@ tags: [linux,network,tuning]
 ---
 
 ### the script will distribute the interrupts automatically.
-
+<!-- more -->
 ```
 #!/bin/bash
 killall irqbalance

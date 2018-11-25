@@ -6,7 +6,7 @@ tags: [linux,network,tuning]
 ---
 
 ### скрипт позволит распределять прерывания в автоматическом режиме.
-
+<!-- more -->
 ```
 #!/bin/bash
 killall irqbalance
