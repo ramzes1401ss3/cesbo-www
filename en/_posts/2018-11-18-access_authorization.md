@@ -24,7 +24,7 @@ This type of authorization will allow you to use tokens, access by ip, login/pas
 
 Go to Settings -> Users, and in the upper right corner click on the NEW USER button. The add user window will open.  
 
-##IMG
+![Image](/assets/post-img/settings-users.png){:class="img-fluid"}
 
 Description of fields:  
 
