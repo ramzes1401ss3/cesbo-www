@@ -22,7 +22,7 @@ tags: [dev]
 
 Перейдите в Settings -> Users, и в правом верхнем углу нажмите на кнопку NEW USER. Откроется окно добавления пользователя.
 
-![Image](/assets/post-img/settings-users.png){:class="img-fluid"}
+![Image](/assets/post-img/settings-users.png){:class="img-fluid", max-width: "50%"}
 
 Описание полей:  
 
