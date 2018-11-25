@@ -5,7 +5,7 @@ title: Script for automatic distribution of interrupts.
 tags: [linux,network,tuning]
 ---
 
-### the script will distribute the interrupts automatically.
+##### the script will distribute the interrupts automatically.
 <!-- more -->
 ```
 #!/bin/bash
