@@ -11,7 +11,10 @@ Authorization allows you to control access to channels and allows you to save vi
 
 #### Enable authorization:
 
-Go to Settings -> HTTP Authentication and check the check box **Enable built-in HTTP/HLS authentication**  
+Go to Settings -> HTTP Authentication and check the check box **Enable built-in HTTP/HLS authentication** 
+
+![Image](/assets/post-img/authentication.png){:class="img-fluid"}
+
 After that - click the "Apply & Restart" button after this action - users (in the Settings -> Users section) will have additional authorization types.
 
 ### Users
