@@ -1,7 +1,7 @@
 	img.zoom {
 	cursor: pointer;
-	max-width: 150px;
+	max-width: 350px;
 	}
 	img.zoom:hover {
-	max-width: none;
+	max-width: max-width: 600px;;
 	}
