@@ -3,6 +3,8 @@ layout: post
 lang: ru
 title: Авторизация доступа
 tags: [dev]
+css:
+  - /assets/css/img.css
 ---
 
 Авторизация позволяет контролировать доступ к каналам и позволяет сохранять статистику просмотра.
@@ -12,7 +14,7 @@ tags: [dev]
 
 Перейдите в раздел Settings -> HTTP Authentication и установите галочку в чекбоксе **Enable built-in HTTP/HLS authentication**  
 
-![Image](/assets/post-img/authentication.png){:class="img-fluid"}
+![Image](/assets/post-img/authentication.png){:class="foc"}
 
 После этого - нажмите кнопку "Apply & Restart" после данного действия - у пользователей (в разделе Settings -> Users) появятся дополнительные типы авторизации.
 
