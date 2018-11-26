@@ -2,7 +2,7 @@
 layout: post
 lang: ru
 title: Авторизация доступа
-tags: [dev]
+tags: [astra]
 css:
   - /assets/css/img.css
 ---

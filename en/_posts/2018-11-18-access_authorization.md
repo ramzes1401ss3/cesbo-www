@@ -2,7 +2,7 @@
 layout: post
 lang: en
 title: Access authorization
-tags: [dev]
+tags: [astra]
 ---
 
 Authorization allows you to control access to channels and allows you to save viewing statistics.
