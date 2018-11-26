@@ -2,7 +2,7 @@
 layout: post
 lang: en
 title: Monitoring
-tags: [dev]
+tags: [astra]
 ---
 
 Export of statistics and events allows you to transfer data on the status of incoming streams, DVB adapter via HTTP in JSON format. 

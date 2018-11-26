@@ -2,7 +2,7 @@
 layout: post
 lang: ru
 title: Сброс пароля
-tags: [dev]
+tags: [astra]
 ---
 
 Этот метод работает с любой версией Astra  

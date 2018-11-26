@@ -2,7 +2,7 @@
 layout: post
 lang: en
 title: Reset Password
-tags: [dev]
+tags: [astra]
 ---
 
 This method works with any Astra version

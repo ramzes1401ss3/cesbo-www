@@ -2,7 +2,7 @@
 layout: post
 lang: ru
 title: Simulcrypt
-tags: [dev]
+tags: [astra]
 ---
 
 ## Simulcrypt
