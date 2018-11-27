@@ -7,7 +7,9 @@ tags: [linux,network,tuning]
 
 ### How to see information about losses
 Keywords words: missed, dropped, fifo, error, rx.  
-`ip -s -s link show eth1`  
+``` sh
+ip -s -s link show eth1
+```  
 
 <!-- more -->
 You need to look at RX Errors. Some network cards provide more detailed information about the nature of the loss:  

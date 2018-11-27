@@ -91,7 +91,6 @@ lspci | grep Multimedia
 Если адаптеры подключены к PCIe правильно, вы увидите список адаптеров PCIe. Например:  
 ```
 01:00.0 Multimedia controller: TBS Technologies DVB-S2 4 Tuner PCIe Card
-01:00.0 Multimedia controller: Digital Devices GmbH Cine V7
 ```
 
 Проверьте boot.log на наличие ошибок:
