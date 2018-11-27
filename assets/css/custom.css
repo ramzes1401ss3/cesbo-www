@@ -1,5 +1,7 @@
-body {
-	padding-top: 3.5rem;
+@media screen {
+	body {
+		padding-top: 3.5rem;
+	}
 }
 
 h1 {
@@ -70,6 +72,23 @@ dl>dd {
 	list-style: none;
 	padding-left: 0;
 	margin-bottom: 3rem;
+}
+
+article {
+	text-align: justify;
+}
+
+article .img-fluid {
+	display: block;
+	border: thin solid #ced4da;
+	border-radius: .25rem;
+	margin: 1rem auto;
+}
+
+@media (min-width: 992px) {
+	article .img-fluid {
+		max-width: 768px;
+	}
 }
 
 /* Landing */
