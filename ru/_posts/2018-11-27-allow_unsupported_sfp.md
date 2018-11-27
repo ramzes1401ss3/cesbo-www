@@ -4,10 +4,10 @@ lang: ru
 title: unsupported SFP+ module. 
 tags: [dev,linux]
 ---
-Статья описывает настройку вещаемого канала в веб-интерфейсе Astra
-<!-- more -->
 
 После установки SFP модуля в сетевую карту  Intel Corporation 82599ES 10-Gigabit, может возникнуть проблема в том - что карта не запустит этот модуль, выдавая ошибку:
+<!-- more -->
+
 
 ```
 ixgbe 0000:02:00.1: failed to load because an unsupported SFP+ module type was detected.
