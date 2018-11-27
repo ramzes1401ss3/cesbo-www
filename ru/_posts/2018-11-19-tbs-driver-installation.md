@@ -45,7 +45,7 @@ systemctl disable apt-daily.timer
 
 ### Установка
 
-##### Загрузка и билдинг:
+##### Загрузка и сборка драйвера:
 ``` sh 
 cd /usr/src
 git clone https://github.com/tbsdtv/media_build.git

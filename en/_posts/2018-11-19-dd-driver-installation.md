@@ -31,10 +31,12 @@ rm -rf /lib/modules/$(uname -r)/kernel/drivers/staging/media
 
 #### Disable auto update in Ubuntu 14.04  
 
-`sed -i.bak -e 's/^\(APT::Periodic::Update-Package-Lists\).*/\1 "0";/g' /etc/apt/apt.conf.d/10periodic`
+``` sh
+sed -i.bak -e 's/^\(APT::Periodic::Update-Package-Lists\).*/\1 "0";/g' /etc/apt/apt.conf.d/10periodic
+```
 
 #### Disable auto update in Ubuntu 16.04
-```
+``` sh
 systemctl disable apt-daily.service
 systemctl disable apt-daily.timer
 ```
@@ -43,20 +45,20 @@ systemctl disable apt-daily.timer
 ### Install
 
 #### Download latest driver from the official repository:
-```
+``` sh
 git clone --depth=1 https://github.com/DigitalDevices/dddvb -b 0.9.29 /usr/src/dddvb
 cd /usr/src/dddvb
 ```
 By the default driver has limit only for 8 DVB adapters. Remove this limit before build drivers:
 
-```
+``` sh
 sed -i \
     -e 's/^#if defined(CONFIG_DVB_MAX_ADAPTERS).*$/#if 0/g' \
     dvb-core/dvbdev.h
 ```    
 If you have more than 64 adapters (for example 10 MaxS8) need to increase limit in the driver:
 
-```
+``` sh
 sed -i \
     -e 's/DVB_MAX_ADAPTERS 64/DVB_MAX_ADAPTERS 256/g' \
     dvb-core/dvbdev.h
@@ -64,14 +66,14 @@ sed -i \
 sed -i \
     -e 's/^\(#define MAX_DVB_MINORS*\).*/\1 512/g' \
     dvb-core/dvbdev.c
- ```
-Build drivers and install it:
 ```
+Build drivers and install it:
+``` sh
 make
 make install
 ```
 Create a list of module dependencies:  
-```
+``` sh
 mkdir -p /etc/depmod.d
 echo 'search extra updates built-in' >/etc/depmod.d/extra.conf
 depmod -a
@@ -82,10 +84,14 @@ Create configuration file for MaxS8 DVB adapters:
 Replacing X with the mode number. See MaxS8 user manual.  
 
 To launch installed drivers restart your system:  
-`shutdown -r now`  
+``` sh
+shutdown -r now
+```  
 
 After reboot check adapters:  
-`ls /dev/dvb`  
+``` sh
+ls /dev/dvb
+```  
 
 Should be listed all adapters installed in the system:  
 ```
@@ -98,7 +104,9 @@ adapter0 adapter1 adapter2 adapter3 adapter4 adapter5 adapter6 adapter7
 #### Signal is fine, but channels don't work
 
 Check dmesg output for i2c errors:  
-`dmesg | grep i2c`
+``` sh
+dmesg | grep i2c
+```
 if you see messages like i2c_write error then turn off MSI (Message Signaled Interrupts) in the driver:  
 
 Open `/etc/modprobe.d/ddbridge.conf` in any text editor  
@@ -112,16 +120,19 @@ If file does not exists, then create it and write:
 If ls /dev/dvb shows error:  
 `ls: cannot access /dev/dvb: No such file or directory`  
 With lspci you may check is adapters available in the system:  
-`lspci | grep Multimedia` 
+``` sh
+lspci | grep Multimedia
+``` 
 
 If adapters connected to the PCIe properly you will see listing of the PCIe adapters. For example:  
 ```
-01:00.0 Multimedia controller: TBS Technologies DVB-S2 4 Tuner PCIe Card
 01:00.0 Multimedia controller: Digital Devices GmbH Cine V7
 ```
 
 Check system boot log for errors:
-`dmesg | grep -i dvb`
+``` sh
+dmesg | grep -i dvb
+```
 You may send this log to the adapter vendor to find a solution.
 
 #### Drivers has been installed some time ago and all worked fine before server reboot

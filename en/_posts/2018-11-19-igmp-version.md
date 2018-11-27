@@ -11,10 +11,13 @@ The IGMP version could be defined in the /etc/sysctl.conf file. For example setu
 <!-- more -->
 
 To apply changes restart system or launch:    
-`sysctl -p`  
-
+``` sh
+sysctl -p
+```  
 You can verify IGMP version with tcpdump. Launch:  
-`tcpdump -i eth1 igmp`  
+``` sh
+tcpdump -i eth1 igmp
+```  
 
 Then try to subscribe to the multicast stream. For example:  
 `astra --analyze udp://eth1@239.255.1.1:1234`  

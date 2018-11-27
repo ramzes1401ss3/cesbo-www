@@ -12,8 +12,12 @@ As an example: DVB adapter connected to Eutelsat 36B will be swapped with an ada
 
 create folder `/etc/astra/mod:`
 
-`mkdir /etc/astra/mod`
+``` sh
+mkdir /etc/astra/mod
+```
 run command:
 
-`astra --dvbls -o /etc/astra/mod/dvb.lua`
+``` sh
+astra --dvbls -o /etc/astra/mod/dvb.lua
+```
 after that - the current adapters will be written to the `/etc/astra/mod/dvb.lua` file and used when initializing astra
