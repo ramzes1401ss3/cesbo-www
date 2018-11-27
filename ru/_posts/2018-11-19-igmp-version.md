@@ -13,10 +13,16 @@ tags: [linux,network,tuning]
 `net.ipv4.conf.eth1.force_igmp_version=2`  
 
 Чтобы применить изменения, перезапустите систему или выполните команду:  
-`sysctl -p`  
+``` sh
+sysctl -p
+```  
 
 Вы можете проверить версию IGMP с помощью tcpdump выполнив команду:  
-`tcpdump -i eth1 igmp`  
+``` sh
+tcpdump -i eth1 igmp
+```  
 
 Затем попробуйте подписаться на мультикаст. Например:  
-`astra --analyze udp://eth1@239.255.1.1:1234`  
+``` sh
+astra --analyze udp://eth1@239.255.1.1:1234
+```  

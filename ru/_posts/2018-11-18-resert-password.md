@@ -9,10 +9,14 @@ tags: [astra]
 
 Подключитесь к своему серверу по ssh и выполните в команду в консоли:  
 <!-- more --> 
-`sh <(wget -qO- https://cesbo.com/download/astra/scripts/pass.sh)`  
+``` sh
+sh <(wget -qO- https://cesbo.com/download/astra/scripts/pass.sh)
+```  
 Подтвердите сброс пароля. Если у вас несколько процессов, скрипт запрашивает подтверждение для каждого. Перезапустите Astra и войдите в веб-интерфейс с именем и паролем по умолчанию: **admin**  
 
 Этот скрипт ищет запущенные процессы с именем astra . Если вы используете другое имя процесса (например, переименованный исполняемый файл), добавьте имя процесса в конец командной строки.   
 
 Пример:  
-`sh <(wget -qO- https://cesbo.com/download/astra/scripts/pass.sh) a561`
+``` sh
+sh <(wget -qO- https://cesbo.com/download/astra/scripts/pass.sh) a561
+```

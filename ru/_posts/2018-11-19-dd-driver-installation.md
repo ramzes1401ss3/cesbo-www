@@ -12,7 +12,7 @@ tags: [dev]
 <!-- more -->
 
 Установка системных утилит для сборки драйвера из исходников:  
-```
+``` sh
 apt-get install build-essential \
     patchutils \
     libproc-processtable-perl \
@@ -23,7 +23,7 @@ apt-get install build-essential \
 
 #### Удалите старые драйвера:  
 
-```
+``` sh
 rm -rf /lib/modules/$(uname -r)/extra
 rm -rf /lib/modules/$(uname -r)/kernel/drivers/media
 rm -rf /lib/modules/$(uname -r)/kernel/drivers/staging/media
@@ -31,11 +31,12 @@ rm -rf /lib/modules/$(uname -r)/kernel/drivers/staging/media
 
 
 #### Отключите автоматическое обновление в Ubuntu 14.04  
-
-`sed -i.bak -e 's/^\(APT::Periodic::Update-Package-Lists\).*/\1 "0";/g' /etc/apt/apt.conf.d/10periodic`
+``` sh
+sed -i.bak -e 's/^\(APT::Periodic::Update-Package-Lists\).*/\1 "0";/g' /etc/apt/apt.conf.d/10periodic
+```
 
 #### Отключите автоматическое обновление в Ubuntu 16.04
-```
+``` sh
 systemctl disable apt-daily.service
 systemctl disable apt-daily.timer
 ```
@@ -44,20 +45,20 @@ systemctl disable apt-daily.timer
 ### Установка
 
 #### Скачать последнюю версию драйвера из официального репозитория:  
-```
+``` sh
 git clone --depth=1 https://github.com/DigitalDevices/dddvb -b 0.9.29 /usr/src/dddvb
 cd /usr/src/dddvb
 ```
 По умолчанию драйвер имеет ограничение в 8 DVB-адаптеров. Отключим это ограничение перед сборкой:
 
-```
+``` sh
 sed -i \
     -e 's/^#if defined(CONFIG_DVB_MAX_ADAPTERS).*$/#if 0/g' \
     dvb-core/dvbdev.h
 ```    
 Если у вас есть более 64 адаптеров (например, 10 MaxS8) необходимо внести изменения в драйвер: 
 
-```
+``` sh
 sed -i \
     -e 's/DVB_MAX_ADAPTERS 64/DVB_MAX_ADAPTERS 256/g' \
     dvb-core/dvbdev.h
@@ -67,12 +68,12 @@ sed -i \
     dvb-core/dvbdev.c
  ```
 Соберите драйвер и установите его:  
-```
+``` sh
 make
 make install
 ```
 Создание списка зависимостей модулей:  
-```
+``` sh
 mkdir -p /etc/depmod.d
 echo 'search extra updates built-in' >/etc/depmod.d/extra.conf
 depmod -a
@@ -83,10 +84,14 @@ depmod -a
 Замените `X` на номер модели. См. руководство пользователя Max S8.    
 
 Для применения изменений перезагрузите компьютер:  
-`shutdown -r now`  
+``` sh
+shutdown -r now
+```  
 
 После перезагрузки - проверьте наличие адаптеров в системе:  
-`ls /dev/dvb`  
+``` sh
+ls /dev/dvb
+```  
 
 В ответ - должны быть перечислены все адаптеры, установленные в системе:    
 ```
