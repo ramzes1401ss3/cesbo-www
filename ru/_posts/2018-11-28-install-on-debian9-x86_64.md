@@ -182,10 +182,16 @@ GRUB_CMDLINE_LINUX_DEFAULT="net.ifnames=0 biosdevname=0"
 
 **Удаляем SWAP:**
 
+Смотрим есть он или нет, если есть, то:
+
 ``` sh
-# free  смотрим есть он или нет, если есть, то:
+# free
 # swapoff -a
-# nano /etc/fstab  -удаляем строку со swap, сохраняем]
+```
+Удаляем строку со swap, сохраняем, перезагружаем сервер:
+
+``` sh
+# nano /etc/fstab  
 # reboot
 ```
 ---
