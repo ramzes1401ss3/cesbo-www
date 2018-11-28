@@ -271,8 +271,8 @@ admin:admin - логин:пароль по умолчанию.
 # systemctl start astra2
 # systemctl start astra3
 ```
-И так далее...
-Для автоматического запуска при старте системы:
+
+Для автоматического запуска сервисов после включения сервера:
 
 ``` sh
 # systemctl enable astra0
@@ -280,3 +280,25 @@ admin:admin - логин:пароль по умолчанию.
 # systemctl enable astra2
 # systemctl enable astra3
 ```
+Для изменения пути сохранения логов Астры, например в /tmp, введём команды:
+
+``` sh
+# sed -i -e 's!/var/log!/tmp!' /lib/systemd/system/astra0.service
+# sed -i -e 's!/var/log!/tmp!' /lib/systemd/system/astra1.service
+# sed -i -e 's!/var/log!/tmp!' /lib/systemd/system/astra2.service
+```
+
+Перезапустим systemctl:
+
+``` sh
+# systemctl daemon-reload
+```
+
+Перезапустим все сервисы астры:
+
+``` sh
+# systemctl restart astra0
+# systemctl restart astra1
+# systemctl restart astra2
+```
+Готово!
