@@ -103,24 +103,6 @@ options ddbridge fmode=x msi=0
 # systemctl disable apt-daily.service
 # systemctl disable apt-daily.timer
 ```
-
-**Рекомендация для 1GBit сетевых карт - изменить конфиг /etc/sysctl.conf:**
-
-``` sh
-net.core.rmem_max = 16777216
-net.core.wmem_max = 16777216
-net.ipv4.udp_mem = 8388608 12582912 16777216
-net.ipv4.tcp_rmem = 4096 87380 8388608
-net.ipv4.tcp_wmem = 4096 65536 8388608
-net.core.wmem_default = 16777216
-net.ipv4.tcp_tw_recycle = 0
-```
-
-Применить изменения:
-
-``` sh
-# sysctl -p
-```
 ---
 **Настройка сетевых карт /etc/network/interfaces:**
 
@@ -153,6 +135,24 @@ GRUB_CMDLINE_LINUX_DEFAULT="net.ifnames=0 biosdevname=0"
 
 ``` sh
 # apt install net-tools
+```
+
+**Рекомендация для 1GBit сетевых карт - изменить конфиг /etc/sysctl.conf:**
+
+``` sh
+net.core.rmem_max = 16777216
+net.core.wmem_max = 16777216
+net.ipv4.udp_mem = 8388608 12582912 16777216
+net.ipv4.tcp_rmem = 4096 87380 8388608
+net.ipv4.tcp_wmem = 4096 65536 8388608
+net.core.wmem_default = 16777216
+net.ipv4.tcp_tw_recycle = 0
+```
+
+Применить изменения:
+
+``` sh
+# sysctl -p
 ```
 ---
 **Монтирование папки /tmp в оперативной памяти:**
