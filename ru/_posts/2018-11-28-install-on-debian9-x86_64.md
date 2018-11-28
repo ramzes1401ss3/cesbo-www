@@ -57,9 +57,9 @@ _Вводим в терминале следующие команды (из по
 # echo 'options ddbridge fmode=1' | tee /etc/modprobe.d/ddbridge.conf
 ```
 
-В данном варианте fmode=1 означает, что для всех 8 адаптеров можно подключить один кабель с 85Е в первый вход (дальний от винтов крепления) и он одним кабелем распределится на все другие входа уже по своему внутреннему мультисвитчу, питание LNB в настройках астры не выключать, оставить по умолчанию.
+В данном варианте fmode=1 означает, что для всех 8 адаптеров можно подключить один кабель с 85Е в первый вход (дальний от винтов крепления) и он одним кабелем распределится на все другие входа уже по своему внутреннему мультисвитчу, питание LNB в настройках астры не выключаем, оставляем по умолчанию.
 
-Либо замените fmode=1 необходимым для ваших нужд номером режима работы карт:
+Либо заменяем fmode=1 необходимым для ваших нужд номером режима работы карт:
 
 ``` sh
 Режимы работы Max S8:
@@ -85,13 +85,13 @@ fmode=3 - Unicable LNB or JESS / Unicabel output of the multiswitch
 adapter0  adapter1  adapter10  adapter11  adapter12  adapter13  adapter14  adapter15  adapter2  adapter3  adapter4  adapter5  adapter6  adapter7  adapter8  adapter9
 ```
 
-Примечание: Если у вас есть I2C-Timeouts, то отключите MSI режим для ddbridge:
+Примечание: Если у вас есть I2C-Timeouts, то отключаем MSI режим для ddbridge:
 
 ``` sh
 # echo 'options ddbridge msi=0' | tee /etc/modprobe.d/ddbridge.conf
 ```
 
-Если файл /etc/modprobe.d/ddbridge.conf уже существует, тогда добавьте в первую строку "msi=0":
+Если файл /etc/modprobe.d/ddbridge.conf уже существует, тогда добавляем в первую строку "msi=0":
 
 ``` sh
 options ddbridge fmode=x msi=0
@@ -104,8 +104,11 @@ options ddbridge fmode=x msi=0
 # systemctl disable apt-daily.timer
 ```
 ---
-**Настройка сетевых карт /etc/network/interfaces:**
+**Настраиваем сетевые карты /etc/network/interfaces:**
 
+``` sh
+# nano /etc/network/interfaces
+```
 ``` sh
 # The loopback network interface
 auto lo
@@ -131,13 +134,14 @@ GRUB_CMDLINE_LINUX_DEFAULT="net.ifnames=0 biosdevname=0"
 
 В /etc/network/interfaces поменять на ethX, сделать update-grub и reboot
 
-**Устанавливаем ifconfig:**
+**Устанавливаем ifconfig и проверяем изменения:**
 
 ``` sh
 # apt install net-tools
+# ifconfig
 ```
 
-**Рекомендация для 1GBit сетевых карт - изменить конфиг /etc/sysctl.conf:**
+**Рекомендация для 1GBit сетевых карт - изменяем конфиг /etc/sysctl.conf:**
 
 ``` sh
 net.core.rmem_max = 16777216
@@ -149,13 +153,13 @@ net.core.wmem_default = 16777216
 net.ipv4.tcp_tw_recycle = 0
 ```
 
-Применить изменения:
+Применяем изменения:
 
 ``` sh
 # sysctl -p
 ```
 ---
-**Монтирование папки /tmp в оперативной памяти:**
+**Монтируем папку /tmp в оперативной памяти для сохранения в ней log-файлов, чтобы не дёргать HDD и SSD диски:**
 
 ``` sh
 # echo "tmpfs /tmp tmpfs rw,nosuid,nodev 0 0" | tee -a /etc/fstab
@@ -174,7 +178,7 @@ net.ipv4.tcp_tw_recycle = 0
 # mount
 ```
 
-Видим, что смонтировалась: 
+Видим, что файловая система смонтировалась: 
 
 ``` sh
 # tmpfs on /tmp type tmpfs (rw,nosuid,nodev,relatime)
@@ -195,7 +199,7 @@ net.ipv4.tcp_tw_recycle = 0
 # reboot
 ```
 ---
-**Выключаем в биосе HyperThreading, чтобы настоящие ядра процессора остались только, а "виртуальные" выключились.**
+**Выключаем в биосе HyperThreading, чтобы остались настоящие ядра процессора, а "виртуальные" выключились.**
 
 **Создаём скрипт следующего содержания для фиксированного распределения dvb-адаптеров по ядрам, чтобы не было фризов и подёргиваний картинки:**
 
@@ -233,5 +237,46 @@ done
 # apt install curl
 # curl -Lo /usr/bin/astra http://cesbo.com/download/astra/$(uname -m)
 # chmod +x /usr/bin/astra
-# astra init
+```
+
+**Запуск Астры** 
+ASTRA работает по умолчанию на порту 8000: http://ВАШ_IP:8000
+admin:admin - логин:пароль по умолчанию.
+Если необходимо на каждый спутниковый адаптер использовать отдельный сервис астры, делать лучше именно так, чтобы при необходимости перезапуска сервиса отключались каналы только с одного принимаемого транспондера одного из тюнеров, то нужно сделать так:
+
+``` sh
+# astra init 8000 astra0
+# astra init 8001 astra1
+# astra init 8002 astra2
+```
+И так далее для всех ваших адаптеров. На данном этапе сервисы эти не запущены и в веб-интерфейсе они не активны. Запускаем пока только одну копию астры. Чтобы активировать сервис нужно:
+
+``` sh
+# systemctl start astra0
+```
+Меняем пароль на свой, возможно создать логин и пароль иной, заходим в ``` Settings -> User -> New User ``` и применяем ``` Type -> Administrator -> Apply ``` ```Settings -> Restart``` Заходим под новым логином и паролем, удаляем прошлую учётную запись ```admin```, введя повторно пароль ```admin```, ставим галку ```Remove user -> Apply```. ```Settings -> Restart```
+
+Теперь можно продублировать данный конфиг на все другие адаптеры, чтобы не повторять процедуру создания учётной записи:
+``` sh
+# cp /etc/astra/astra0.conf /etc/astra/astra1.conf
+# cp /etc/astra/astra0.conf /etc/astra/astra2.conf
+# cp /etc/astra/astra0.conf /etc/astra/astra3.conf
+```
+И так далее для всех адаптеров.
+
+Запускаем ранее не запущенные сервисы:
+
+``` sh
+# systemctl start astra1
+# systemctl start astra2
+# systemctl start astra3
+```
+И так далее...
+Для автоматического запуска при старте системы:
+
+``` sh
+# systemctl enable astra0
+# systemctl enable astra1
+# systemctl enable astra2
+# systemctl enable astra3
 ```
