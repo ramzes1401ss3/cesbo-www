@@ -201,6 +201,12 @@ net.ipv4.tcp_tw_recycle = 0
 ---
 **Выключаем в биосе HyperThreading, чтобы остались настоящие ядра процессора, а "виртуальные" выключились.**
 
+Устанавливаем пакет ```psmisc```, чтобы появилась в системе команда ```killall```:
+
+``` sh
+# apt install psmisc
+```
+
 **Создаём скрипт следующего содержания для фиксированного распределения dvb-адаптеров по ядрам, чтобы не было фризов и подёргиваний картинки:**
 
 ``` sh
@@ -212,12 +218,13 @@ net.ipv4.tcp_tw_recycle = 0
 
 ```bash
 #!/bin/bash
+killall irqbalance
 
 ncpus=`grep -ciw ^processor /proc/cpuinfo`
 test "$ncpus" -gt 1 || exit 1
 n=0
 
-for irq in `cat /proc/interrupts | grep 'ddbridge' | awk '{print $1}' | sed s/\://g` ; do
+for irq in `cat /proc/interrupts | grep 'ddbridge\|eth' | awk '{print $1}' | sed s/\://g` ; do
     f="/proc/irq/$irq/smp_affinity"
     test -r "$f" || continue
     cpu=$[$ncpus - ($n % $ncpus) - 1]
