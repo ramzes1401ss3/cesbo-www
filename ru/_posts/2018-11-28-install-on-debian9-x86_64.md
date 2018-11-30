@@ -207,7 +207,7 @@ net.ipv4.tcp_tw_recycle = 0
 # apt install psmisc
 ```
 
-**Создаём скрипт следующего содержания для фиксированного распределения dvb-адаптеров по ядрам, чтобы не было фризов и подёргиваний картинки:**
+**Создаём скрипт следующего содержания для фиксированного распределения dvb-адаптеров и сетевых интерфейсов по ядрам, чтобы не было фризов и подёргиваний картинки:**
 
 ``` sh
 # touch /home/andra/dvb-interrupts.sh
@@ -309,3 +309,36 @@ admin:admin - логин:пароль по умолчанию.
 # systemctl restart astra2
 ```
 Готово!
+
+---
+**Увеличиваем частоту ядер до максимума**
+
+Узнать заданные частоты на данный момент можно командой:
+
+``` sh
+# grep '' /sys/devices/system/cpu/cpu0/cpufreq/scaling_{min,cur,max}_freq
+```
+Видим:
+
+``` sh
+/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq:1600000
+/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq:1707489
+/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq:3900000
+```
+Минимальная 1600, максимальная 3900, задаём максимальную частоту с помощью скрипта:
+``` sh
+# touch /home/andra/cpu-max.sh
+# chmod +x /home/andra/cpu-max.sh
+```
+Копируем и вставляем, запускаем:
+
+``` sh
+#!/bin/bash
+
+cpucount=$(grep -c 'model name' /proc/cpuinfo)
+sysdir=/sys/devices/system/cpu
+for cpu in $(eval echo cpu{0..$((cpucount-1))}); do
+        cat $sysdir/$cpu/cpufreq/scaling_max_freq > $sysdir/$cpu/cpufreq/scaling_min_freq
+done
+```
+После перезагрузки сервера данные настройки сбрасываются.
