@@ -313,6 +313,12 @@ admin:admin - логин:пароль по умолчанию.
 ---
 **Увеличиваем частоту ядер до максимума**
 
+Устанавливаем необходимые пакеты:
+
+``` sh
+# apt install lshw linux-cpupower cpufrequtils
+```
+
 Узнать заданные частоты на данный момент можно командой:
 
 ``` sh
@@ -334,6 +340,11 @@ admin:admin - логин:пароль по умолчанию.
 
 ``` sh
 #!/bin/bash
+
+cpufreq-set -g performance -c 0
+cpufreq-set -g performance -c 1
+cpufreq-set -g performance -c 2
+cpufreq-set -g performance -c 3
 
 cpucount=$(grep -c 'model name' /proc/cpuinfo)
 sysdir=/sys/devices/system/cpu
