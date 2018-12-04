@@ -207,6 +207,73 @@ net.ipv4.tcp_tw_recycle = 0
 # apt install psmisc
 ```
 
+**Устанавливаем в Debian 9 отсутствующий rc.local для удобства запуска своих скриптов после перезагрузки сервера (удобный костыль для меня):**
+
+Создаём файлы, вставляем строки:
+``` sh
+#nano /etc/rc.local
+```
+``` sh
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+ 
+exit 0
+```
+``` sh
+# chmod +x /etc/rc.local
+```
+``` sh
+# nano /etc/systemd/system/rc-local.service
+```
+``` sh
+[Unit]
+ Description=/etc/rc.local Compatibility
+ ConditionPathExists=/etc/rc.local
+ 
+[Service]
+ Type=forking
+ ExecStart=/etc/rc.local start
+ TimeoutSec=0
+ StandardOutput=tty
+ RemainAfterExit=yes
+ SysVStartPriority=99
+ 
+[Install]
+ WantedBy=multi-user.target
+```
+Включаем сервис rc-local выполнив команду:
+
+``` sh
+# systemctl enable rc-local
+# systemctl start rc-local.service
+```
+Проверяем запущен ли сервис:
+
+``` sh
+# systemctl status rc-local.service
+```
+Видим, что активен:
+``` sh
+● rc-local.service - /etc/rc.local Compatibility
+   Loaded: loaded (/etc/systemd/system/rc-local.service; enabled; vendor preset: enabled)
+  Drop-In: /lib/systemd/system/rc-local.service.d
+           └─debian.conf
+   Active: active (exited) since Tue 2018-12-04 16:53:41 MSK; 14min ago
+  Process: 447 ExecStart=/etc/rc.local start (code=exited, status=0/SUCCESS)
+    Tasks: 0 (limit: 4915)
+   CGroup: /system.slice/rc-local.service
+```
+
 **Создаём скрипт следующего содержания для фиксированного распределения dvb-адаптеров и сетевых интерфейсов по ядрам, чтобы не было фризов и подёргиваний картинки:**
 
 ``` sh
@@ -236,7 +303,72 @@ for irq in `cat /proc/interrupts | grep 'ddbridge\|eth' | awk '{print $1}' | sed
     fi
 done
 ```
-Сохраняем, запускаем. Скрипт будет работать до перезагрузки сервера.
+Сохраняем, запускаем.
+
+**Увеличиваем частоту ядер до максимума**
+
+Устанавливаем необходимые пакеты:
+
+``` sh
+# apt install lshw linux-cpupower cpufrequtils
+```
+
+Узнать заданные частоты на данный момент можно командой:
+
+``` sh
+# grep '' /sys/devices/system/cpu/cpu0/cpufreq/scaling_{min,cur,max}_freq
+```
+Видим:
+
+``` sh
+/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq:1600000
+/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq:1707489
+/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq:3900000
+```
+Минимальная 1600, максимальная 3900, задаём максимальную частоту с помощью скрипта:
+``` sh
+# touch /home/andra/cpu-max.sh
+# chmod +x /home/andra/cpu-max.sh
+```
+Копируем и вставляем, запускаем:
+
+``` sh
+#!/bin/bash
+
+cpufreq-set -g performance -c 0
+cpufreq-set -g performance -c 1
+cpufreq-set -g performance -c 2
+cpufreq-set -g performance -c 3
+
+cpucount=$(grep -c 'model name' /proc/cpuinfo)
+sysdir=/sys/devices/system/cpu
+for cpu in $(eval echo cpu{0..$((cpucount-1))}); do
+        cat $sysdir/$cpu/cpufreq/scaling_max_freq > $sysdir/$cpu/cpufreq/scaling_min_freq
+done
+```
+Добавляем скрипты в автозагрузку, открыв в редакторе и указав путь до скриптов:
+``` sh
+# nano /etc/rc.local
+```
+``` sh
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+/home/andra/dvb-interrupts.sh
+/home/andra/cpu-max.sh
+
+exit 0
+```
 
 **Устанавливаем астру:**
 ---
@@ -311,45 +443,4 @@ admin:admin - логин:пароль по умолчанию.
 Готово!
 
 ---
-**Увеличиваем частоту ядер до максимума**
 
-Устанавливаем необходимые пакеты:
-
-``` sh
-# apt install lshw linux-cpupower cpufrequtils
-```
-
-Узнать заданные частоты на данный момент можно командой:
-
-``` sh
-# grep '' /sys/devices/system/cpu/cpu0/cpufreq/scaling_{min,cur,max}_freq
-```
-Видим:
-
-``` sh
-/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq:1600000
-/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq:1707489
-/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq:3900000
-```
-Минимальная 1600, максимальная 3900, задаём максимальную частоту с помощью скрипта:
-``` sh
-# touch /home/andra/cpu-max.sh
-# chmod +x /home/andra/cpu-max.sh
-```
-Копируем и вставляем, запускаем:
-
-``` sh
-#!/bin/bash
-
-cpufreq-set -g performance -c 0
-cpufreq-set -g performance -c 1
-cpufreq-set -g performance -c 2
-cpufreq-set -g performance -c 3
-
-cpucount=$(grep -c 'model name' /proc/cpuinfo)
-sysdir=/sys/devices/system/cpu
-for cpu in $(eval echo cpu{0..$((cpucount-1))}); do
-        cat $sysdir/$cpu/cpufreq/scaling_max_freq > $sysdir/$cpu/cpufreq/scaling_min_freq
-done
-```
-После перезагрузки сервера данные настройки сбрасываются.
