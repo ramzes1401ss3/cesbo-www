@@ -23,7 +23,19 @@ _Вводим в терминале следующие команды (из по
 ``` sh
 # apt install build-essential patchutils libproc-processtable-perl git mercurial linux-headers-4.9.0-8-all-amd64
 ```
-
+Смотрим версию ядра:
+``` sh
+# uname -a
+```
+Ищем пакет:
+``` sh
+# apt-cache search linux-headers
+# apt-cache search kernel-headers
+```
+Ищем пакет с нужной версией и ставим его "apt install имя пакета":
+``` sh
+# apt install linux-headers-4.9.0-8-all-amd64
+```
 Переходим в папку с распаковаными драйверами:
 
 ``` sh
