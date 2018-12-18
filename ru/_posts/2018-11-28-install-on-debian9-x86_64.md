@@ -21,7 +21,7 @@ _Вводим в терминале следующие команды (из по
 Устанавливаем инструмент для сборки драйверов:
 
 ``` sh
-# apt install build-essential patchutils libproc-processtable-perl linux-headers-`uname –r` git mercurial
+# apt install build-essential patchutils libproc-processtable-perl git mercurial linux-headers-4.9.0-8-all-amd64
 ```
 
 Переходим в папку с распаковаными драйверами:
