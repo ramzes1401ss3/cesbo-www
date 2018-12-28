@@ -21,7 +21,7 @@ _Вводим в терминале следующие команды (из по
 Устанавливаем инструмент для сборки драйверов:
 
 ``` sh
-# apt install htop build-essential patchutils libproc-processtable-perl git mercurial linux-headers-4.9.0-8-all-amd64
+# apt install htop build-essential patchutils libproc-processtable-perl speedtest-cli git mercurial linux-headers-4.9.0-8-all-amd64
 ```
 Смотрим версию ядра:
 ``` sh
